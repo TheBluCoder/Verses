@@ -54,7 +54,7 @@
             <!-- Main Content -->
             <div class="m-auto w-1/2 border-b">
                 <section class="mb-6 text-center">
-                    <h2 class="text-3xl font-semibold text-neutral-950">
+                    <h2 class="text-2xl font-semibold text-neutral-950">
                         Demagogue (for my late mother on her birthday)
                     </h2>
                     <p
