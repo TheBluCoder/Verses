@@ -2,8 +2,11 @@
 import SocialMediaIcons from '@/Components/SocialMediaIcons.vue';
 import Header from '@/Components/Header.vue';
 import Footer from '@/Components/Footer.vue';
+import { usePage } from '@inertiajs/vue3';
+import BrandLogo from '@/Components/BrandLogo.vue';
+import FooterFilters from '@/Components/FooterFilters.vue';
 
-const appName = import.meta.env.VITE_APP_NAME;
+let isHomepage = usePage().component === 'Home';
 </script>
 
 <template>
@@ -16,11 +19,11 @@ const appName = import.meta.env.VITE_APP_NAME;
         <div class="mb-12">
             <!-- Header -->
             <Header
-                ><Link href="/"> {{ appName }}</Link></Header
-            >
+                ><Link href="/"> <BrandLogo /></Link
+            ></Header>
 
             <!-- Navigation -->
-            <nav class="mb-6 hidden text-center md:block">
+            <nav v-if="isHomepage" class="mb-6 hidden text-center md:block">
                 <ul
                     class="flex justify-center gap-10 font-medium uppercase text-neutral-500"
                 >
@@ -40,7 +43,9 @@ const appName = import.meta.env.VITE_APP_NAME;
         </div>
 
         <!-- Fixed Secondary Navigation (Bottom of Screen) -->
-        <Footer></Footer>
+        <Footer>
+            <FooterFilters :condition="isHomepage" />
+        </Footer>
     </div>
 </template>
 

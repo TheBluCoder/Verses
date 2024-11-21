@@ -7,6 +7,22 @@ const model = defineModel({
 });
 
 const input = ref(null);
+let props = defineProps({
+    id: String,
+    name: {
+        type: String,
+        required: true,
+    },
+    type: {
+        type: String,
+        default: 'text',
+    },
+    placeholder: String,
+    autofocus: {
+        type: Boolean,
+        required: false,
+    },
+});
 
 onMounted(() => {
     if (input.value.hasAttribute('autofocus')) {
@@ -18,9 +34,20 @@ defineExpose({ focus: () => input.value.focus() });
 </script>
 
 <template>
-    <input
-        class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-        v-model="model"
-        ref="input"
-    />
+    <div
+        class="relative flex items-center transition-all duration-200 hover:drop-shadow-md"
+    >
+        <input
+            v-model="model"
+            ref="input"
+            :id="props.id"
+            :name="props.name"
+            :type="props.type"
+            required
+            class="w-full rounded-md border border-gray-300 px-4 py-3 text-sm text-gray-800 outline-blue-600"
+            :placeholder="props.placeholder"
+            :autofocus="autofocus"
+        />
+        <slot />
+    </div>
 </template>

@@ -1,6 +1,9 @@
 <script setup>
 import HeaderButton from '@/Components/HeaderButton.vue';
-import Hamburger from '@/Components/Hamburger.vue';
+import MenuBar from '@/Components/MenuBar.vue';
+import { computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+let guest = computed(() => !usePage().props.auth.user?.username);
 </script>
 
 <template>
@@ -11,14 +14,18 @@ import Hamburger from '@/Components/Hamburger.vue';
             <slot />
         </h1>
         <div class="f flex items-center gap-4">
-            <button class="md:hidden">
-                <Hamburger />
-            </button>
-            <header-button class="bg-purple-700 font-bold text-white" href="#"
+            <div class="md:hidden">
+                <MenuBar />
+            </div>
+            <header-button
+                v-if="guest"
+                class="bg-purple-700 font-bold text-white transition-colors duration-300 hover:bg-purple-600 hover:text-orange-400 active:bg-white active:text-purple-500"
+                href="/create-account"
                 >Get started</header-button
             >
             <header-button
-                class="border border-purple-500 font-medium text-purple-500"
+                v-if="guest"
+                class="border border-purple-500 font-medium text-purple-700 transition-colors duration-300 hover:border-orange-500 active:font-bold active:text-purple-700"
                 href="/login"
                 >Login
             </header-button>
