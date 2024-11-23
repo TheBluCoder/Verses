@@ -26,6 +26,7 @@ class UserFactory extends Factory
         return [
             'username' => fake()->userName(),
             'email' => fake()->unique()->safeEmail(),
+            'profilePic' => "https://randomuser.me/api/portraits/med/".(($this->faker->randomElement(['men','women'])))."/45.jpg",
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),

@@ -33,7 +33,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $visible= ['username'];
+    protected $visible= ['username','profilePic'];
 
     /**
      * Get the attributes that should be cast.
@@ -46,5 +46,14 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function Poems()
+    {
+        return $this->hasMany(Poem::class);
+    }
+
+    public function publishedPoems(){
+        $this->Poems()->where('published','=','true');
     }
 }
