@@ -1,5 +1,6 @@
 <script setup>
-import Poem from '@/Components/Poem.vue';
+import Poem from '@/Components/Post/Poem.vue';
+import JSShare from 'js-share';
 defineProps({ poems: { type: Array, required: true } });
 </script>
 <template>

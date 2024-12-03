@@ -3,7 +3,7 @@ import InputError from '@/Components/forms/InputError.vue';
 import InputLabel from '@/Components/forms/InputLabel.vue';
 import TextInput from '@/Components/forms/TextInput.vue';
 import Password from '@/Components/forms/Password.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
+import GuestLayout from '@/Layouts/DefaultLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 
 defineOptions({ layout: GuestLayout });

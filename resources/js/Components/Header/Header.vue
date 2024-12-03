@@ -1,22 +1,22 @@
 <script setup>
-import HeaderButton from '@/Components/HeaderButton.vue';
-import MenuBar from '@/Components/MenuBar.vue';
+import HeaderButton from '@/Components/Header/HeaderButton.vue';
+import MenuBar from '@/Components/Header/MenuBar.vue';
 import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 let guest = computed(() => !usePage().props.auth.user?.username);
 </script>
 
 <template>
-    <header class="mb-6 flex items-center justify-between">
-        <h1
-            class="font-title flex-grow text-center text-xl text-orange-500 md:flex-grow-0 md:text-3xl md:text-neutral-950"
+    <header class="relative mb-6 flex items-center justify-between">
+        <div class="ml-10"
+
         >
             <slot />
-        </h1>
+        </div>
         <div class="f flex items-center gap-4">
-            <div class="md:hidden">
-                <MenuBar />
-            </div>
+<!--            <div class="md:hidden">-->
+<!--                <MenuBar />-->
+<!--            </div>-->
             <header-button
                 v-if="guest"
                 class="bg-purple-700 font-bold text-white transition-colors duration-300 hover:bg-purple-600 hover:text-orange-400 active:bg-white active:text-purple-500"

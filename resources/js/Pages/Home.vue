@@ -1,6 +1,6 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import Poems from '@/Components/Poems.vue';
+import GuestLayout from '@/Layouts/DefaultLayout.vue';
+import Poems from '@/Components/Post/Poems.vue';
 let props = defineProps({ poems: { type: Object } });
 
 defineOptions({ layout: GuestLayout });

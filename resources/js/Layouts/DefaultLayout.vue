@@ -1,23 +1,24 @@
 <script setup>
 import SocialMediaIcons from '@/Components/SocialMediaIcons.vue';
-import Header from '@/Components/Header.vue';
-import Footer from '@/Components/Footer.vue';
+import Header from '@/Components/Header/Header.vue';
+import Footer from '@/Components/Footer/Footer.vue';
 import { usePage } from '@inertiajs/vue3';
-import BrandLogo from '@/Components/BrandLogo.vue';
-import FooterFilters from '@/Components/FooterFilters.vue';
+import BrandLogo from '@/Components/Header/BrandLogo.vue';
+import FooterFilters from '@/Components/Footer/FooterFilters.vue';
+import Sidebar from "@/Components/SideBar/Sidebar.vue";
+// import Menu from '@/Components/SideBar/Sidebar.vue';
 
 let isHomepage = usePage().component === 'Home';
 </script>
 
 <template>
-    <div
-        class="flex min-h-screen w-full flex-col justify-between rounded-lg bg-white p-6 shadow-lg md:px-12"
-    >
+    <div class="min-h-screen w-full rounded-lg bg-white p-6 shadow-lg md:px-12">
         <!-- Left-aligned Social Media Icons -->
         <social-media-icons />
 
         <div class="mb-12">
             <!-- Header -->
+            <Sidebar/>
             <Header
                 ><Link href="/"> <BrandLogo /></Link
             ></Header>
@@ -37,7 +38,7 @@ let isHomepage = usePage().component === 'Home';
             </nav>
 
             <!-- Main Content -->
-            <div class="m-auto md:w-3/4 lg:w-1/2">
+            <div class="md:m-auto md:w-3/4 lg:w-1/2 ml-14">
                 <slot />
             </div>
         </div>

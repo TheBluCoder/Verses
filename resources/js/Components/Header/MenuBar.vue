@@ -1,12 +1,12 @@
 <script>
-import Hamburger from '@/Components/Hamburger.vue';
+import Hamburger from '@/Components/Header/Hamburger.vue';
 import { defineAsyncComponent } from 'vue';
 export default {
     name: 'MenuBar',
     components: {
         Hamburger,
         DropDownList: defineAsyncComponent(
-            () => import('@/Components/DropDownList.vue'),
+            () => import('@/Components/Header/DropDownList.vue'),
         ),
     },
 
@@ -25,7 +25,7 @@ export default {
             'z-40 rounded border border-gray-300 text-sm font-medium drop-shadow-lg':
                 toggleMenu,
         }"
-        class="fixed right-1 top-5 w-1/5 divide-y divide-gray-300 text-center"
+        class="absolute right-1 top-5 w-1/5 divide-y divide-gray-300 text-center"
     >
         <div
             :class="{
