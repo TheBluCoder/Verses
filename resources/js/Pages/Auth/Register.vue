@@ -24,12 +24,11 @@ const handleSubmit = () => {
 </script>
 
 <template>
+    <Head title="Create-Account"></Head>
     <div
         class="flex min-h-screen items-center justify-center bg-gradient-to-b from-gray-50 to-indigo-50 px-4 py-12 sm:px-6 lg:px-8"
     >
         <div class="w-full max-w-md">
-            <Head title="Register" />
-
             <div class="mb-8 text-center">
                 <h2 class="mb-2 font-serif text-4xl text-gray-900">
                     Join Verses
@@ -98,7 +97,7 @@ const handleSubmit = () => {
                         />
                     </div>
 
-                    <!-- Favorite Poem -->
+                    <!-- Favorite Post -->
                     <div>
                         <InputLabel for="favoritePoem"
                             >Favorite Poem (Optional)</InputLabel

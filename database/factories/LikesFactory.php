@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +20,8 @@ class LikesFactory extends Factory
     {
         return [
             //
+            'user_id'=> fake()->randomElement(range(1, User::all()->count(), )),
+            'post_id'=> fake()->randomElement(Post::all()->pluck('id')->toArray()),
         ];
     }
 }

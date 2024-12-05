@@ -5,10 +5,12 @@ import Footer from '@/Components/Footer/Footer.vue';
 import { usePage } from '@inertiajs/vue3';
 import BrandLogo from '@/Components/Header/BrandLogo.vue';
 import FooterFilters from '@/Components/Footer/FooterFilters.vue';
-import Sidebar from "@/Components/SideBar/Sidebar.vue";
+import Sidebar from '@/Components/SideBar/Sidebar.vue';
+import { computed } from "vue";
 // import Menu from '@/Components/SideBar/Sidebar.vue';
 
 let isHomepage = usePage().component === 'Home';
+
 </script>
 
 <template>
@@ -18,27 +20,13 @@ let isHomepage = usePage().component === 'Home';
 
         <div class="mb-12">
             <!-- Header -->
-            <Sidebar/>
+            <Sidebar />
             <Header
                 ><Link href="/"> <BrandLogo /></Link
             ></Header>
 
-            <!-- Navigation -->
-            <nav v-if="isHomepage" class="mb-6 hidden text-center md:block">
-                <ul
-                    class="flex justify-center gap-10 font-medium uppercase text-neutral-500"
-                >
-                    <li>
-                        <a href="#" class="hover:text-neutral-950">About</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:text-neutral-950">Discover</a>
-                    </li>
-                </ul>
-            </nav>
-
             <!-- Main Content -->
-            <div class="md:m-auto md:w-3/4 lg:w-1/2 ml-14">
+            <div class="ml-14 md:m-auto md:w-3/4 lg:w-1/2">
                 <slot />
             </div>
         </div>

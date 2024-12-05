@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import {
     HomeIcon,
     UserCircleIcon,
-    BookOpenIcon,
+    MagnifyingGlassIcon,
     InformationCircleIcon,
     ArrowRightOnRectangleIcon,
 } from '@heroicons/vue/24/outline';
@@ -13,14 +13,14 @@ const isLoggedIn = computed(() => usePage().props.auth.user ?? false); // This w
 
 const navItems = [
     { name: 'Home', icon: HomeIcon, path: '/' },
-    { name: 'Explore', icon: BookOpenIcon, path: '/explore' },
+    { name: 'Explore', icon: MagnifyingGlassIcon, path: '/explore' },
     { name: 'Account Settings', icon: UserCircleIcon, path: '/settings' },
     { name: 'About', icon: InformationCircleIcon, path: '/about' },
 ];
 
 const userProfile = {
-    name: usePage().props.auth.user.username,
-    avatar: usePage().props.auth.user.profilePic,
+    name: usePage().props.auth.user?.username,
+    avatar: usePage().props.auth.user?.profilePic,
 };
 </script>
 
@@ -29,12 +29,15 @@ const userProfile = {
         class="group fixed left-0 top-0 z-50 flex h-full w-16 flex-col justify-between bg-white shadow-lg transition-all duration-300 hover:w-64"
     >
         <!-- Navigation Items -->
-        <nav class="py-8">
+        <nav class="py-8 ">
             <ul class="space-y-2">
                 <li v-for="item in navItems" :key="item.name">
-                    <a
+                    <Link
                         :href="item.path"
                         class="flex items-center overflow-hidden whitespace-nowrap px-4 py-3 text-gray-700 transition-colors duration-200 hover:bg-indigo-50 hover:text-indigo-600"
+                        :class="{
+                            'bg-indigo-200': $page.component === item.name,
+                        }"
                     >
                         <component :is="item.icon" class="h-6 w-6 shrink-0" />
                         <span
@@ -42,7 +45,7 @@ const userProfile = {
                         >
                             {{ item.name }}
                         </span>
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>
@@ -65,9 +68,12 @@ const userProfile = {
                     </span>
                 </div>
             </template>
+
             <Link
-                href="/login"
-                class="flex items-center overflow-hidden whitespace-nowrap rounded-lg px-2 py-3 text-gray-700 transition-colors duration-200 hover:bg-indigo-50 hover:text-indigo-600"
+                :method="isLoggedIn ? 'POST' : 'GET'"
+                :as="isLoggedIn ? 'button' : 'link'"
+                :href="isLoggedIn ? '/logout' : '/login'"
+                class="flex cursor-pointer items-center overflow-hidden whitespace-nowrap rounded-lg px-2 py-3 text-gray-700 transition-colors duration-200 hover:bg-indigo-50 hover:text-indigo-600"
             >
                 <ArrowRightOnRectangleIcon class="h-6 w-6 shrink-0" />
                 <span

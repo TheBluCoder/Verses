@@ -41,7 +41,7 @@ defineProps({ poem: { type: Object, required: true } });
                 </div>
 
                 <div>
-                    <Reactions></Reactions>
+                    <Reactions :poem="poem"></Reactions>
                 </div>
             </div>
         </section>

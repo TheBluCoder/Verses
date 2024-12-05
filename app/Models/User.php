@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function Poems()
     {
-        return $this->hasMany(Poem::class);
+        return $this->hasMany(Post::class);
     }
 
     public function publishedPoems(){

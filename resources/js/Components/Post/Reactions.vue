@@ -8,9 +8,13 @@ import { directive as clickAway } from 'vue3-click-away';
 const isLiked = ref(false);
 // const showSocialShare = ref(false);
 
-let poem = {
-    id: 2,
-    likes: 20,
+defineProps({
+    poem: {
+        type: Object,
+        required: true,
+    },
+});
+let comment = {
     comments: ['comment1', 'comment2', 'comment3'],
 };
 let ShowShareList = ref(false);
@@ -36,7 +40,9 @@ const toggleLike = () => {
                 class="h-5 w-5"
                 :class="{ 'text-red-500': isLiked }"
             />
-            <span class="text-sm">{{ poem.likes + (isLiked ? 1 : 0) }}</span>
+            <span v-show="poem.likes_count > 0 || isLiked" class="text-sm">{{
+                poem.likes_count + (isLiked ? 1 : 0)
+            }}</span>
         </button>
 
         <!-- Comment button -->
@@ -46,7 +52,7 @@ const toggleLike = () => {
             class="flex items-center space-x-1 text-gray-600 transition-colors duration-500 hover:text-red-600"
         >
             <ChatBubbleLeftIcon class="h-5 w-5" />
-            <span class="text-sm">{{ poem.comments.length }}</span>
+            <span class="text-sm">{{ comment.comments.length }}</span>
         </Link>
 
         <div class="relative flex gap-x-2" v-click-away="closeSocialShare">
