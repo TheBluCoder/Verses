@@ -14,7 +14,7 @@ const props = defineProps({
         required: true,
     },
 });
-let commentCount = props.poem.comments.length;
+let commentCount = props.poem.comments?.length;
 let ShowShareList = ref(false);
 const closeSocialShare = () => {
     ShowShareList.value = false;
