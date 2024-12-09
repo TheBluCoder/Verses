@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +20,9 @@ class CommentFactory extends Factory
     {
         return [
             //
-            "body" => $this->faker->realText(),
-            "post_id" => $this->faker->numberBetween(1, 10),
+            "content" => $this->faker->realText(),
+            "post_id" => $this->faker->randomElement(Post::all()->pluck('id')->toArray()),
+            "user_id" => $this->faker->randomElement(User::all()->pluck('id')->toArray()),
         ];
     }
 }

@@ -31,6 +31,7 @@
         "@coreui/vue": "^5.4.1",
         "@heroicons/vue": "^2.2.0",
         "date-fns": "^4.1.0",
+        "dayjs": "^1.11.13",
         "js-share": "^2.3.2",
         "vue3-click-away": "^1.2.4"
     }

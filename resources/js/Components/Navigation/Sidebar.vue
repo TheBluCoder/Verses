@@ -26,10 +26,10 @@ const userProfile = {
 
 <template>
     <div
-        class="group fixed left-0 top-0 z-50 flex h-full w-16 flex-col justify-between bg-white shadow-lg transition-all duration-300 hover:w-64"
+        class="group fixed left-0 top-0 z-50 hidden h-full w-14 flex-col justify-between bg-white shadow-lg transition-all duration-300 md:flex md:hover:w-14 lg:hover:w-64"
     >
         <!-- Navigation Items -->
-        <nav class="py-8 ">
+        <nav class="py-8">
             <ul class="space-y-2">
                 <li v-for="item in navItems" :key="item.name">
                     <Link
@@ -52,22 +52,21 @@ const userProfile = {
 
         <!-- User Section -->
         <div class="border-t border-gray-100 p-4">
-            <template v-if="isLoggedIn">
-                <div
-                    class="mb-4 flex items-center space-x-4 overflow-hidden whitespace-nowrap"
+            <div
+                v-if="isLoggedIn"
+                class="mb-4 flex items-center space-x-4 overflow-hidden whitespace-nowrap"
+            >
+                <img
+                    :src="userProfile.avatar"
+                    :alt="userProfile.name"
+                    class="h-6 w-6 shrink-0 rounded-full"
+                />
+                <span
+                    class="font-medium text-gray-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 >
-                    <img
-                        :src="userProfile.avatar"
-                        :alt="userProfile.name"
-                        class="h-8 w-8 shrink-0 rounded-full"
-                    />
-                    <span
-                        class="font-medium text-gray-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    >
-                        {{ userProfile.name }}
-                    </span>
-                </div>
-            </template>
+                    {{ userProfile.name }}
+                </span>
+            </div>
 
             <Link
                 :method="isLoggedIn ? 'POST' : 'GET'"

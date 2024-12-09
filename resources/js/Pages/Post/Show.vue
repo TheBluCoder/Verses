@@ -1,7 +1,7 @@
 <script setup>
 import GuestLayout from '@/Layouts/DefaultLayout.vue';
 import Poem from '@/Components/Post/Poem.vue';
-import CommentSection from "@/Components/Post/CommentSection.vue";
+import CommentSection from '@/Components/Post/CommentSection.vue';
 defineOptions({ layout: GuestLayout });
 var props = defineProps({
     poem: {
@@ -13,9 +13,8 @@ var props = defineProps({
 
 <template>
     <Poem :poem="props.poem"></Poem>
-<!--    <CommentSection :comments="['Nice poem', 'greate one', 'cool poem']"></CommentSection>-->
+        <CommentSection :comments="poem.comments"></CommentSection>
+
 </template>
 
 <style scoped></style>
-
-

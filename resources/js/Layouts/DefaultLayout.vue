@@ -4,13 +4,12 @@ import Header from '@/Components/Header/Header.vue';
 import Footer from '@/Components/Footer/Footer.vue';
 import { usePage } from '@inertiajs/vue3';
 import BrandLogo from '@/Components/Header/BrandLogo.vue';
-import FooterFilters from '@/Components/Footer/FooterFilters.vue';
-import Sidebar from '@/Components/SideBar/Sidebar.vue';
-import { computed } from "vue";
-// import Menu from '@/Components/SideBar/Sidebar.vue';
+import PostFilters from '@/Components/Footer/PostFilters.vue';
+import Sidebar from '@/Components/Navigation/Sidebar.vue';
+import BottomBar from '@/Components/Navigation/BottomBar.vue';
+// import Menu from '@/Components/Navigation/Sidebar.vue';
 
 let isHomepage = usePage().component === 'Home';
-
 </script>
 
 <template>
@@ -26,15 +25,16 @@ let isHomepage = usePage().component === 'Home';
             ></Header>
 
             <!-- Main Content -->
-            <div class="ml-14 md:m-auto md:w-3/4 lg:w-1/2">
+            <div class="md:m-auto md:w-3/4 lg:w-1/2">
                 <slot />
             </div>
         </div>
 
         <!-- Fixed Secondary Navigation (Bottom of Screen) -->
-        <Footer>
-            <FooterFilters :condition="isHomepage" />
+        <Footer class="hidden md:block">
+            <PostFilters :condition="isHomepage" />
         </Footer>
+        <BottomBar></BottomBar>
     </div>
 </template>
 

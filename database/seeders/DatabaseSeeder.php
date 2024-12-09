@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
 use App\Models\Likes;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,9 +17,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        User::factory(30)->create();
         $this->call(PostSeeder::class);
-        User::factory(10)->create();
-        Likes::factory(20)->create();
+        $this->call(CommentSeeder::class);
+        Likes::factory(10)->create();
+
 
 
     }
