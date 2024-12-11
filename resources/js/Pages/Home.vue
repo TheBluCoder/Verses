@@ -6,7 +6,7 @@ import { PlusCircleIcon } from '@heroicons/vue/24/outline/index.js';
 import { inject } from 'vue';
 import SearchBar from '@/Components/SearchBar.vue';
 
-let props = defineProps({ poems: { type: Object } });
+let props = defineProps({ poems: { type: Array } });
 const guest = inject('guest');
 
 defineOptions({ layout: GuestLayout });

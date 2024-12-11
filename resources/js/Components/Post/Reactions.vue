@@ -14,8 +14,13 @@ const props = defineProps({
         required: true,
     },
 });
-let commentCount = props.poem.comments?.length;
+let commentCount =
+    'commentCount' in props.poem
+        ? props.poem.commentCount
+        : props.poem.comments.length || 0;
+
 let ShowShareList = ref(false);
+let numOfLikes = props.poem.likesCount;
 const closeSocialShare = () => {
     ShowShareList.value = false;
 };
@@ -38,8 +43,8 @@ const toggleLike = () => {
                 class="h-5 w-5"
                 :class="{ 'text-red-500': isLiked }"
             />
-            <span v-show="poem.likes_count > 0 || isLiked" class="text-sm">{{
-                poem.likes_count + (isLiked ? 1 : 0)
+            <span v-show="numOfLikes > 0 || isLiked" class="text-sm">{{
+                numOfLikes + (isLiked ? 1 : 0)
             }}</span>
         </button>
 

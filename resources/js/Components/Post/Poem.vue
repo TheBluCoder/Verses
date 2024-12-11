@@ -45,7 +45,7 @@ defineProps({ poem: { type: Object, required: true } });
                             {{ poem?.author?.username }}
                         </p>
                         <p class="text-start text-sm capitalize text-gray-500">
-                            {{ formatDistanceToNow(poem.created_at) }}
+                            {{ formatDistanceToNow(poem.published) }}
                         </p>
                     </div>
                 </div>

@@ -13,8 +13,7 @@ var props = defineProps({
 
 <template>
     <Poem :poem="props.poem"></Poem>
-        <CommentSection :comments="poem.comments"></CommentSection>
-
+    <CommentSection :comments="poem.comments"></CommentSection>
 </template>
 
 <style scoped></style>
