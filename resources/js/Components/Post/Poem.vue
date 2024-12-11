@@ -1,7 +1,10 @@
 <script setup>
 import { usePage } from '@inertiajs/vue3';
 import Reactions from '@/Components/Post/Reactions.vue';
-import { formatDistanceToNow } from 'date-fns';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 defineProps({ poem: { type: Object, required: true } });
 </script>
@@ -45,7 +48,7 @@ defineProps({ poem: { type: Object, required: true } });
                             {{ poem?.author?.username }}
                         </p>
                         <p class="text-start text-sm capitalize text-gray-500">
-                            {{ formatDistanceToNow(poem.published) }}
+                            {{ dayjs(poem.published).fromNow() }}
                         </p>
                     </div>
                 </div>

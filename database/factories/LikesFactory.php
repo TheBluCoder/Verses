@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,8 +21,26 @@ class LikesFactory extends Factory
     {
         return [
             //
-            'user_id'=> fake()->randomElement(range(1, User::all()->count(), )),
-            'post_id'=> fake()->randomElement(Post::all()->pluck('id')->toArray()),
+            'user_id'=> User::factory(),
+            'likeable_id'=> fake()->randomElement([Post::factory(), Comment::factory()]),
+            'likeable_type'=> fake()->randomElement([Post::factory(), Comment::factory()]),
         ];
     }
+
+    public function forPost ()
+    {
+        return $this->state([
+            'likeable_id'=> Post::factory(),
+            'likeable_type'=> Post::class,
+        ]);
+    }
+
+    public function forComment()
+    {
+        return $this->state([
+            'likeable_id'=> Comment::factory(),
+            'likeable_type'=> Comment::class,
+        ]);
+    }
+
 }

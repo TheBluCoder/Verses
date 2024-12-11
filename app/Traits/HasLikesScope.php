@@ -5,12 +5,10 @@ namespace App\Traits;
 use App\Models\Scopes\likesCountScope;
 use App\Models\Scopes\PublishedScope;
 
-trait HasPublishAndLikesScope
+trait HasLikesScope
 {
-    protected static function bootHasPublishAndLikesScope(): void
+    protected static function bootHasLikesScope(): void
     {
-        static::addGlobalScope(new PublishedScope);
-
         static::addGlobalScope(new likesCountScope);
     }
 

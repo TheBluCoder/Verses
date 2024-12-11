@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use App\Traits\HasPublishAndLikesScope;
+use App\Traits\HasLikesScope;
 
 class Comment extends Model
 {
     /** @use HasFactory<\Database\Factories\CommentFactory>
-     *     @use HasPublishAndLikesScope */
-    use HasFactory;
+     *     @use HasLikesScope */
+    use HasFactory, HasLikesScope;
 
 
     public  $with=['replies','author'];
@@ -29,6 +29,10 @@ class Comment extends Model
 
     public function author(): BelongsTo{
         return $this->belongsTo(User::class, 'user_id', 'id', relation: 'author' );
+    }
+
+    public function likes(): MorphMany{
+        return $this->morphMany(Likes::class, 'likeable');
     }
 
 
