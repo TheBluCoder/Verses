@@ -2,14 +2,14 @@
 import { ref } from 'vue';
 import {
     HomeIcon,
-    BookOpenIcon,
+    MagnifyingGlassIcon,
     PlusCircleIcon,
     InformationCircleIcon,
 } from '@heroicons/vue/24/outline';
 
 const navItems = [
     { name: 'Home', icon: HomeIcon, path: '/' },
-    { name: 'Explore', icon: BookOpenIcon, path: '/explore' },
+    { name: 'Explore', icon: MagnifyingGlassIcon, path: '/explore' },
     { name: 'create', icon: PlusCircleIcon, path: '/posts/create' },
     { name: 'About', icon: InformationCircleIcon, path: '/about' },
 ];

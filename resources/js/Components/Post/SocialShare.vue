@@ -14,7 +14,7 @@ let showFlashModal = ref(false);
 const linkUrl = () => {
     return new URL(`/poem/${props.poem.id}`, window.location.href);
 };
-
+console.log(window.location.href);
 const copyToClipboard = () => {
     navigator.clipboard.writeText(linkUrl().toString()).then(() => {
         showFlashModal.value = true;

@@ -10,7 +10,7 @@ defineProps({ poem: { type: Object, required: true } });
 </script>
 
 <template>
-    <div class="mb-14 border-b pb-2">
+    <div class="mb-14 border-b pb-2 group">
         <section>
             <!--            Post content -->
             <div>
@@ -27,7 +27,7 @@ defineProps({ poem: { type: Object, required: true } });
                 <div v-if="usePage().component === 'Home'">
                     <Link
                         :href="`/poems/${poem.id}`"
-                        class="mt-4 inline-block font-medium text-purple-700"
+                        class="mt-4 inline-block font-medium text-red-500"
                         >Read more</Link
                     >
                 </div>
@@ -44,7 +44,7 @@ defineProps({ poem: { type: Object, required: true } });
                         />
                     </div>
                     <div class="self-center text-start">
-                        <p class="capitalize">
+                        <p class="capitalize text-purple-700">
                             {{ poem?.author?.username }}
                         </p>
                         <p class="text-start text-sm capitalize text-gray-500">

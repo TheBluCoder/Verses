@@ -26,7 +26,7 @@ defineOptions({ layout: GuestLayout });
                 <HeaderButton
                     as="button"
                     href="/posts/create"
-                    class="cursor-pointer rounded-xl border bg-orange-500 py-1 font-semibold text-white"
+                    class="cursor-pointer rounded-xl border bg-orange-600 py-1 font-semibold text-white"
                     ><div>Create</div>
                     <PlusCircleIcon class="w-6"
                 /></HeaderButton>

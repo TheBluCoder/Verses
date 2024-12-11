@@ -40,7 +40,7 @@ const toggleLike = () => {
         >
             <component
                 :is="isLiked ? HeartSolidIcon : HeartIcon"
-                class="h-5 w-5"
+                class="h-5 w-5 text-red-500"
                 :class="{ 'text-red-500': isLiked }"
             />
             <span v-show="numOfLikes > 0 || isLiked" class="text-sm">{{
@@ -54,7 +54,7 @@ const toggleLike = () => {
             :href="`/poems/${poem.id}`"
             class="flex items-center space-x-1 text-gray-600 transition-colors duration-500 hover:text-red-600"
         >
-            <ChatBubbleLeftIcon class="h-5 w-5" />
+            <ChatBubbleLeftIcon class="h-5 w-5 text-red-500" />
             <span class="text-sm">{{ commentCount }}</span>
         </Link>
 
@@ -63,9 +63,12 @@ const toggleLike = () => {
             <button
                 v-show="!ShowShareList"
                 @click="ShowShareList = !ShowShareList"
-                class="text-gray-600 transition-colors duration-500 hover:text-red-600 group-hover:mr-2"
+                class="text-gray-600 transition-colors duration-500 hover:text-red-600"
             >
-                <i class="fa fa-arrow-up-from-bracket"></i>
+                <i
+                    class="fa fa-arrow-up-from-bracket group-hover:animate-bounce"
+                    style="color: mediumpurple"
+                ></i>
             </button>
 
             <!-- Social Share Menu -->
