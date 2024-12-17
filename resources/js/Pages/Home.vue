@@ -1,5 +1,5 @@
 <script setup>
-import GuestLayout from '@/Layouts/DefaultLayout.vue';
+import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import Poems from '@/Components/Post/Poems.vue';
 import HeaderButton from '@/Components/Header/HeaderButton.vue';
 import { PlusCircleIcon } from '@heroicons/vue/24/outline/index.js';
@@ -9,7 +9,7 @@ import SearchBar from '@/Components/SearchBar.vue';
 let props = defineProps({ poems: { type: Array } });
 const guest = inject('guest');
 
-defineOptions({ layout: GuestLayout });
+defineOptions({ layout: DefaultLayout });
 </script>
 
 <template>

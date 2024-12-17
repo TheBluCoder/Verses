@@ -15,14 +15,12 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['reply']);
-const likedComments = ref(new Set());
+const isLiked = ref(false);
+let likes = ref(props.likesCount);
 
 const toggleLike = (commentId) => {
-    if (likedComments.value.has(commentId)) {
-        likedComments.value.delete(commentId);
-    } else {
-        likedComments.value.add(commentId);
-    }
+    isLiked.value = !isLiked.value;
+    likes.value += isLiked.value ? 1 : -1;
 };
 </script>
 
@@ -33,15 +31,13 @@ const toggleLike = (commentId) => {
             class="flex items-center space-x-1 text-xs text-gray-500 hover:text-indigo-600"
         >
             <component
-                :is="likedComments.has(commentId) ? HeartSolidIcon : HeartIcon"
+                :is="isLiked ? HeartSolidIcon : HeartIcon"
                 class="h-4 w-4"
                 :class="{
-          'text-red-500': likedComments.has(commentId),
-        }"
+                    'text-red-500': isLiked,
+                }"
             />
-            <span v-if="likesCount > 0">{{
-                    likesCount + likedComments.has(commentId)
-                }}</span>
+            <span v-if="likes > 0">{{ likes }}</span>
         </button>
 
         <button

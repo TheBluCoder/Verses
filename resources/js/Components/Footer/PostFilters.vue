@@ -16,7 +16,7 @@ export default {
         class="flex justify-center gap-8 py-2 text-base font-medium uppercase"
     >
         <PostFilter href="/" :condition="$page.url === '/'">Recent</PostFilter>
-        <PostFilter href="/top-poems" :condition="$page.url === '/top-poems'">Top poems</PostFilter>
+        <PostFilter href="/top-posts" :condition="$page.url === '/top-posts'">Top poems</PostFilter>
 
     </div>
 </template>

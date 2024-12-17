@@ -26,7 +26,7 @@ defineProps({ poem: { type: Object, required: true } });
 
                 <div v-if="usePage().component === 'Home'">
                     <Link
-                        :href="`/poems/${poem.id}`"
+                        :href="`/posts/${poem.id}`"
                         class="mt-4 inline-block font-medium text-red-500"
                         >Read more</Link
                     >

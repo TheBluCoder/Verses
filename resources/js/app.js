@@ -1,3 +1,4 @@
+import Toast from 'vue-toastification';
 import '../css/app.css';
 import './bootstrap';
 
@@ -26,6 +27,7 @@ createInertiaApp({
         })
             .use(plugin)
             .use(ZiggyVue)
+            .use(Toast)
             .use(VueClickAwayPlugin)
             .component('Link', Link)
             .component('Head', Head)

@@ -10,6 +10,7 @@
         "@inertiajs/vue3": "^1.0.0",
         "@rushstack/eslint-patch": "^1.8.0",
         "@tailwindcss/forms": "^0.5.3",
+        "@tailwindcss/typography": "^0.5.15",
         "@vitejs/plugin-vue": "^5.0.0",
         "@vue/eslint-config-prettier": "^9.0.0",
         "autoprefixer": "^10.4.20",
@@ -30,9 +31,26 @@
         "@coreui/coreui": "^5.2.0",
         "@coreui/vue": "^5.4.1",
         "@heroicons/vue": "^2.2.0",
+        "@tiptap/core": "^2.10.3",
+        "@tiptap/extension-character-count": "^2.10.3",
+        "@tiptap/extension-history": "^2.10.3",
+        "@tiptap/extension-image": "^2.10.3",
+        "@tiptap/extension-text-align": "^2.10.3",
+        "@tiptap/pm": "^2.10.3",
+        "@tiptap/starter-kit": "^2.10.3",
+        "@tiptap/vue-3": "^2.10.3",
         "date-fns": "^4.1.0",
         "dayjs": "^1.11.13",
+        "flowbite-typography": "^1.0.5",
         "js-share": "^2.3.2",
+        "lucide-vue-next": "^0.468.0",
+        "vue-toastification": "^2.0.0-rc.5",
         "vue3-click-away": "^1.2.4"
+    },
+    "resolutions": {
+        "prosemirror-model": "1.19.3"
+    },
+    "overrides": {
+        "prosemirror-model": "1.19.3"
     }
 }
