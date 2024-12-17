@@ -28,7 +28,7 @@ const editor = useEditor({
         // },
     },
 
-    content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
+    content: '',
     extensions: [
         StarterKit.configure({
             paragraph: {
@@ -51,7 +51,7 @@ const editor = useEditor({
 
     <div class="container mx-auto my-8 max-w-4xl">
         <section
-            id="editor-menu"
+            id="editor"
             v-if="editor"
             class="flex flex-wrap items-center justify-between gap-x-4 rounded-t-lg border-l border-r border-t border-gray-800 px-4 py-2"
         >
@@ -150,11 +150,15 @@ const editor = useEditor({
                     </button>
                 </div>
             </div>
+
+            <div>
+                <primary-button>Publish</primary-button>
+            </div>
         </section>
-        <form class="w-full focus:border-none">
+        <form class="w-full focus:border-none" @submit.prevent>
             <input
                 class="min-w-1/2 w-full border-b-0 border-gray-800 p-4 font-serif text-xl capitalize lg:text-2xl"
-                placeholder="Poem Title . . ."
+                placeholder="Title . . ."
             />
         </form>
         <EditorContent :editor="editor"></EditorContent>
@@ -174,11 +178,6 @@ const editor = useEditor({
     </div>
     <div class="w-full border"></div>
 
-    <teleport defer to="#editor-menu">
-        <div class="flex-wrap items-center gap-x-4">
-            <PrimaryButton>Publish</PrimaryButton>
-        </div>
-    </teleport>
 </template>
 <style scoped>
 input:focus,
