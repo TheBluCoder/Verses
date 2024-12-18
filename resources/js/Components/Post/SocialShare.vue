@@ -8,7 +8,7 @@ let props = defineProps({
     show: { type: Boolean, default: true },
 });
 
-const flashModal = defineAsyncComponent(() => import('../flashModal.vue'));
+const flashModal = defineAsyncComponent(() => import('../modals/flashModal.vue'));
 let showFlashModal = ref(false);
 
 const linkUrl = () => {

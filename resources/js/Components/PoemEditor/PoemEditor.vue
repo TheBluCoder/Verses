@@ -16,12 +16,24 @@ import {
     UndoDotIcon,
 } from 'lucide-vue-next';
 import PrimaryButton from '@/Components/forms/PrimaryButton.vue';
+import { ref } from 'vue';
+import ConfirmDialog from '@/Components/modals/ConfirmDialog.vue';
+import { useForm } from '@inertiajs/vue3';
 
+let show = ref(false);
 const characterLimit = 1000;
+const form = useForm({
+    title: '',
+    content: '',
+});
+
+const submit = () => {
+    form.content = editor.
+}
 const editor = useEditor({
     editorProps: {
         attributes: {
-            class: 'border-b border-x border-gray-900 rounded-b-lg py-2 px-4 prose min-h-80 max-h-80 overflow-y-auto lg:prose xl:prose-xl mx-auto focus:outline-none ',
+            class: 'border-b border-x border-gray-600 rounded-b-lg py-2 px-4 prose min-h-80 max-h-80 overflow-y-auto lg:prose xl:prose-xl mx-auto focus:outline-none ',
         },
         // transformPastedText(text) {
         //     return text.toUpperCase();
@@ -53,7 +65,7 @@ const editor = useEditor({
         <section
             id="editor"
             v-if="editor"
-            class="flex flex-wrap items-center justify-between gap-x-4 rounded-t-lg border-l border-r border-t border-gray-800 px-4 py-2"
+            class="flex flex-wrap items-center justify-between gap-x-4 rounded-t-lg border-l border-r border-t border-gray-600 px-4 py-2"
         >
             <div class="flex flex-wrap items-center gap-x-4">
                 <button
@@ -151,14 +163,16 @@ const editor = useEditor({
                 </div>
             </div>
 
-            <div>
-                <primary-button>Publish</primary-button>
+            <div class="flex flex-wrap items-center">
+                <primary-button>Published</primary-button>
+                <primary-button @click="show = true">Discard</primary-button>
             </div>
         </section>
         <form class="w-full focus:border-none" @submit.prevent>
             <input
                 class="min-w-1/2 w-full border-b-0 border-gray-800 p-4 font-serif text-xl capitalize lg:text-2xl"
                 placeholder="Title . . ."
+                v-model="form.title"
             />
         </form>
         <EditorContent :editor="editor"></EditorContent>
@@ -177,7 +191,7 @@ const editor = useEditor({
         chars
     </div>
     <div class="w-full border"></div>
-
+    <ConfirmDialog v-model:toggled="show" v-if="show" />
 </template>
 <style scoped>
 input:focus,
