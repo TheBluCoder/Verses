@@ -7,6 +7,8 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { computed, createApp, h } from 'vue';
 import VueClickAwayPlugin from 'vue3-click-away';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+// import Toast from "vue-toastification";
+import 'vue-toastification/dist/index.css';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const guest = computed(() => usePage().props.auth.user === null);

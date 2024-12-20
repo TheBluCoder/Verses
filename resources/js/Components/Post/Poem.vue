@@ -2,24 +2,32 @@
 import { usePage } from '@inertiajs/vue3';
 import Reactions from '@/Components/Post/Reactions.vue';
 import dayjs from 'dayjs';
+import utc from 'dayjs-plugin-utc';
+import timezone from 'dayjs-timezone-iana-plugin';
+
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+console.log(userTimezone);
 
 defineProps({ poem: { type: Object, required: true } });
 </script>
 
 <template>
-    <div class="mb-14 border-b pb-2 group">
+    <div class="group mb-14 border-b pb-2">
         <section>
             <!--            Post content -->
             <div>
                 <h2
                     class="text-2xl font-semibold text-neutral-950"
-                    v-text="poem?.title"
+                    v-html="poem?.title"
                 ></h2>
                 <pre
-                    class="li mt-4 w-full text-wrap font-sans text-lg font-light leading-relaxed text-neutral-700"
+                    class="mt-4 w-full text-wrap font-sans text-lg text-neutral-700"
                     :class="{ 'line-clamp-5': usePage().component === 'Home' }"
                     v-html="poem.content"
                 ></pre>
@@ -40,7 +48,7 @@ defineProps({ poem: { type: Object, required: true } });
                         <img
                             :src="poem?.author?.profilePic"
                             alt="Random Image"
-                            class="rounded-full"
+                            class="h-[45px] w-[45px] rounded-full"
                         />
                     </div>
                     <div class="self-center text-start">
@@ -48,7 +56,12 @@ defineProps({ poem: { type: Object, required: true } });
                             {{ poem?.author?.username }}
                         </p>
                         <p class="text-start text-sm capitalize text-gray-500">
-                            {{ dayjs(poem.published).fromNow() }}
+                            {{
+                                dayjs
+                                    .utc(poem.published)
+                                    .tz(userTimezone)
+                                    .fromNow()
+                            }}
                         </p>
                     </div>
                 </div>

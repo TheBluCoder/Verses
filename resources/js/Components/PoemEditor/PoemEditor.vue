@@ -3,41 +3,37 @@ import { EditorContent, useEditor } from '@tiptap/vue-3';
 import { StarterKit } from '@tiptap/starter-kit';
 import textAlign from '@tiptap/extension-text-align';
 import CharacterCount from '@tiptap/extension-character-count';
-
-import {
-    BoldIcon,
-    ItalicIcon,
-    StrikethroughIcon,
-    AlignCenterIcon,
-    AlignRightIcon,
-    AlignLeftIcon,
-    AlignJustifyIcon,
-    RedoDotIcon,
-    UndoDotIcon,
-} from 'lucide-vue-next';
+import CharacterCountComponent from './CharacterCount.vue';
 import PrimaryButton from '@/Components/forms/PrimaryButton.vue';
-import { ref } from 'vue';
 import ConfirmDialog from '@/Components/modals/ConfirmDialog.vue';
 import { useForm } from '@inertiajs/vue3';
-
+import Toolbar from '@/Components/PoemEditor/Toolbar.vue';
+import { useToastComposable } from '@/Composables/useToast.js';
+import { ref } from 'vue';
 let show = ref(false);
+
+const { showToast } = useToastComposable();
 const characterLimit = 1000;
+
 const form = useForm({
     title: '',
     content: '',
+    published: false,
 });
 
-const submit = () => {
-    form.content = editor.
-}
 const editor = useEditor({
     editorProps: {
         attributes: {
-            class: 'border-b border-x border-gray-600 rounded-b-lg py-2 px-4 prose min-h-80 max-h-80 overflow-y-auto lg:prose xl:prose-xl mx-auto focus:outline-none ',
+            class: 'border-b border-x border-gray-400 rounded-b-lg py-2 px-4  min-h-[60dvh] max-h-[1000px] overflow-y-auto mx-auto focus:outline-none ',
         },
-        // transformPastedText(text) {
-        //     return text.toUpperCase();
-        // },
+        handlePaste(view, event) {
+            const clipboardData = event.clipboardData || window.clipboardData;
+            const text = clipboardData.getData('text');
+
+            // Insert sanitized text into the editor
+            view.dispatch(view.state.tr.insertText(text));
+            return true; // Prevent default paste behavior
+        },
     },
 
     content: '',
@@ -57,6 +53,24 @@ const editor = useEditor({
         }),
     ],
 });
+
+const submit = (editor) => {
+    if (editor.getText().length > 0) {
+        form.title = form.title || 'untitled';
+        form.content = editor.getHTML();
+        form.published = true;
+
+        form.post('/posts/store', {
+            onSuccess: () => {
+                console.log('success');
+            },
+        });
+    } else {
+        console.log(typeof editor);
+        showToast('Post is empty!', 'error');
+    }
+    console.log(form.content);
+};
 </script>
 <template>
     <Head title="Create Poem"></Head>
@@ -65,132 +79,32 @@ const editor = useEditor({
         <section
             id="editor"
             v-if="editor"
-            class="flex flex-wrap items-center justify-between gap-x-4 rounded-t-lg border-l border-r border-t border-gray-600 px-4 py-2"
+            class="flex items-center justify-between gap-x-4 rounded-t-lg border-l border-r border-t border-gray-400 px-4 py-2"
         >
-            <div class="flex flex-wrap items-center gap-x-4">
-                <button
-                    @click="editor.chain().focus().toggleBold().run()"
-                    :disabled="!editor.can().chain().focus().toggleBold().run()"
-                    :class="{ 'bg-indigo-100': editor.isActive('bold') }"
-                    class="rounded-md p-1 text-sm hover:bg-gray-200"
-                >
-                    <BoldIcon class="m-auto w-3/4" />
-                </button>
+            <Toolbar :editor="editor"></Toolbar>
 
-                <button
-                    class="rounded-md p-1 text-sm hover:bg-gray-200"
-                    @click="editor.chain().focus().toggleItalic().run()"
-                    :disabled="
-                        !editor.can().chain().focus().toggleItalic().run()
-                    "
-                    :class="{ 'bg-indigo-100': editor.isActive('italic') }"
-                >
-                    <ItalicIcon class="m-auto w-3/4" />
-                </button>
-
-                <button
-                    class="rounded-md p-1 text-sm hover:bg-gray-200"
-                    @click="editor.chain().focus().toggleStrike().run()"
-                    :disabled="
-                        !editor.can().chain().focus().toggleStrike().run()
-                    "
-                    :class="{ 'bg-indigo-100': editor.isActive('strike') }"
-                >
-                    <StrikethroughIcon class="m-auto w-3/4" />
-                </button>
-                <button
-                    class="rounded-md p-1 text-sm hover:bg-gray-200"
-                    @click="editor.chain().focus().setTextAlign('left').run()"
-                    :class="{
-                        'bg-indigo-100': editor.isActive({ textAlign: 'left' }),
-                    }"
-                >
-                    <AlignLeftIcon class="m-auto w-3/4" />
-                </button>
-
-                <button
-                    class="rounded-md p-1 text-sm hover:bg-gray-200"
-                    @click="editor.chain().focus().setTextAlign('center').run()"
-                    :class="{
-                        'bg-indigo-100': editor.isActive({
-                            textAlign: 'center',
-                        }),
-                    }"
-                >
-                    <AlignCenterIcon class="m-auto w-3/4" />
-                </button>
-                <button
-                    class="rounded-md p-1 text-sm hover:bg-gray-200"
-                    @click="editor.chain().focus().setTextAlign('right').run()"
-                    :class="{
-                        'bg-indigo-100': editor.isActive({
-                            textAlign: 'right',
-                        }),
-                    }"
-                >
-                    <AlignRightIcon class="m-auto w-3/4" />
-                </button>
-                <button
-                    class="rounded-md p-1 text-sm hover:bg-gray-200"
-                    @click="
-                        editor.chain().focus().setTextAlign('justify').run()
-                    "
-                    :class="{
-                        'bg-indigo-100': editor.isActive({
-                            textAlign: 'justify',
-                        }),
-                    }"
-                >
-                    <AlignJustifyIcon />
-                </button>
-                <div class="flex items-center gap-x-4">
-                    <button
-                        class="cursor-pointer rounded-md p-1 text-sm hover:bg-gray-200"
-                        @click="editor.chain().focus().undo().run()"
-                        :disabled="!editor.can().undo()"
-                        :class="{ 'text-gray-400': !editor.can().undo() }"
-                    >
-                        <RedoDotIcon class="m-auto w-3/4" />
-                    </button>
-                    <button
-                        class="cursor-pointer rounded-md p-1 text-sm hover:bg-gray-200"
-                        @click="editor.chain().focus().redo().run()"
-                        :disabled="!editor.can().redo()"
-                        :class="{ 'text-gray-400': !editor.can().redo() }"
-                    >
-                        <UndoDotIcon class="m-auto w-3/4" />
-                    </button>
-                </div>
-            </div>
-
-            <div class="flex flex-wrap items-center">
-                <primary-button>Published</primary-button>
+            <div class="flex items-center">
+                <primary-button @click="submit(editor)">Publish</primary-button>
                 <primary-button @click="show = true">Discard</primary-button>
             </div>
         </section>
         <form class="w-full focus:border-none" @submit.prevent>
             <input
-                class="min-w-1/2 w-full border-b-0 border-gray-800 p-4 font-serif text-xl capitalize lg:text-2xl"
-                placeholder="Title . . ."
+                class="min-w-1/2 w-full border-b-0 border-gray-400 p-4 font-serif text-xl capitalize lg:text-2xl"
+                placeholder="Untitled . . ."
                 v-model="form.title"
             />
         </form>
         <EditorContent :editor="editor"></EditorContent>
     </div>
-    <div
-        v-if="editor"
-        :class="{
-            'text-xs': true,
-            'text-gray-500': editor.storage.characterCount.characters() < 700,
-            'text-orange-600': editor.storage.characterCount.characters() < 900,
-            'text-red-500':
-                editor.storage.characterCount.characters() === characterLimit,
-        }"
-    >
-        {{ editor.storage.characterCount.characters() + '/' + characterLimit }}
-        chars
+    <div class="m-auto w-full max-w-4xl">
+        <character-count-component
+            v-if="editor"
+            :character-limit="characterLimit"
+            :editor="editor"
+        />
+        <div class="w-full rounded-lg border"></div>
     </div>
-    <div class="w-full border"></div>
     <ConfirmDialog v-model:toggled="show" v-if="show" />
 </template>
 <style scoped>
@@ -198,6 +112,6 @@ input:focus,
 textarea:focus {
     outline: none !important; /* Force removal */
     box-shadow: none !important; /* Remove any shadows */
-    border-color: black;
+    border-color: #9ca3af;
 }
 </style>

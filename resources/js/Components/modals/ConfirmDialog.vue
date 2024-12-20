@@ -2,7 +2,7 @@
 let toggled = defineModel('toggled');
 const handleSelection = (option) => {
     if (option === true) {
-        console.log("")
+        console.log('');
     }
 
     toggled.value = !toggled.value;
@@ -11,26 +11,47 @@ const handleSelection = (option) => {
 
 <template>
     <Teleport to="body">
-        <div
-            v-if="toggled"
-            class="modal fixed left-[40vw] top-[40vh] z-50 grid h-1/4 min-h-[10rem] w-1/4 min-w-[20rem] rounded border border-gray-400 bg-gray-50 text-center shadow-lg shadow-gray-500"
+        <Transition
+            enter-active-class="transform"
         >
-            <div class="w-full border-b border-gray-400"></div>
-            <p class="modal mt-8 font-semibold text-gray-700">
-                Do you want to save to draft?
-            </p>
-            <div class="modal flex justify-between px-5">
-                <button type="button" class="font-semibold text-green-800">yes</button>
-                <button type="button" class="text-red-500" @click ="handleSelection(false)">
-                    cancel
-                </button>
+            <div
+                v-if="toggled"
+                id="confirmDialog"
+                class="fixed left-0 top-0 flex min-h-screen min-w-[100vw] items-center justify-center"
+            >
+                <div
+                    class="modal z-50 min-h-[12rem] w-1/5 min-w-[20rem] place-content-center rounded-lg border border-orange-700 bg-gray-50 text-center shadow-lg shadow-gray-900"
+                >
+                    <hr
+                        class="w-full border-orange-700 dark:border-orange-700"
+                    />
+                    <p class="modal mt-8 font-semibold text-gray-900">
+                        Do you want to save to draft?
+                    </p>
+                    <div class="modal mt-7 flex justify-between px-8">
+                        <button
+                            type="button"
+                            class="font-semibold text-green-800"
+                        >
+                            yes
+                        </button>
+                        <button
+                            type="button"
+                            class="text-red-500"
+                            @click="handleSelection(false)"
+                        >
+                            cancel
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </Transition>
     </Teleport>
 </template>
 
 <style scoped>
-body *:not(.modal):not(.modal *) {
-    opacity: 0.9;
+#confirmDialog {
+    background-color: dimgray;
+    opacity: 0.7;
 }
 </style>
