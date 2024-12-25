@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.9",
         "league/commonmark": "2.6.0",
         "mews/purifier": "^3.4",
+        "predis/predis": "2.0",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {

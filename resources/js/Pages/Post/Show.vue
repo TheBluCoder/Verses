@@ -1,19 +1,22 @@
 <script setup>
 import GuestLayout from '@/Layouts/DefaultLayout.vue';
-import Poem from '@/Components/Post/Poem.vue';
-import CommentSection from '@/Components/Comments/CommentList.vue';
+import Post from '@/Components/Post/Post.vue';
+import CommentSection from '@/Components/Comments/CommentSection.vue';
+import { provide } from 'vue';
 defineOptions({ layout: GuestLayout });
 var props = defineProps({
-    poem: {
+    post: {
         type: Object,
         required: true,
     },
 });
+
+provide('postId', props.post.id);
 </script>
 
 <template>
-    <Poem :poem="props.poem"></Poem>
-    <CommentSection :comments="poem.comments"></CommentSection>
+    <Post :post="props.post"></Post>
+    <CommentSection :comments="post.comments"></CommentSection>
 </template>
 
 <style scoped></style>

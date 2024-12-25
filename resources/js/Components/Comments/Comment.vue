@@ -1,27 +1,36 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+// import { ref } from 'vue';
 import CommentContent from './CommentContent.vue';
 import CommentActions from './CommentActions.vue';
 import CommentForm from './CommentForm.vue';
+import { useReplyStore } from '@/Composables/useReplyStore';
+import { computed } from 'vue';
 
 const props = defineProps({
     comment: {
         type: Object,
         required: true,
     },
+    commentableType: {
+        type: String,
+        default: 'comment',
+    },
 });
 let hasReplies = props.comment.replies && props.comment.replies.length > 0;
 
 const emit = defineEmits(['add-comment']);
-const replyingTo = ref(null);
 
-const handleReply = (comment) => {
-    replyingTo.value = replyingTo.value === comment.id ? null : comment.id;
-};
+const replyStore = useReplyStore();
+
+const sortedReplies = computed(() => {
+    return hasReplies
+        ? [...props.comment.replies].sort((a, b) => -(a.id - b.id))
+        : [];
+});
 
 const submitReply = (content, parentId) => {
     emit('add-comment', { content, parentId });
-    replyingTo.value = null;
+    replyStore.replyingTo = null;
 };
 </script>
 
@@ -43,25 +52,24 @@ const submitReply = (content, parentId) => {
                 <CommentActions
                     :comment-id="comment.id"
                     :likes-count="comment.likesCount"
-                    @reply="handleReply(comment)"
+                    :comment-is-liked="comment.isLiked"
+                    @reply="replyStore.handleReply(comment.id)"
                 />
 
                 <!-- Reply Form -->
-                <div v-if="replyingTo === comment.id" class="mt-3">
+                <div v-if="replyStore.replyingTo === comment.id" class="mt-3">
                     <CommentForm
                         placeholder="Write a reply..."
-                        @submit="(content) => submitReply(content, comment.id)"
                         class="ml-6"
+                        :commentable-type="commentableType"
+                        :commentable-id="comment.id"
                     />
                 </div>
 
                 <!-- Nested Replies -->
-                <div
-                    v-if="hasReplies"
-                    class="ml-6 mt-3 space-y-3"
-                >
+                <div v-if="hasReplies" class="ml-6 mt-3 space-y-3">
                     <Comment
-                        v-for="reply in comment.replies"
+                        v-for="reply in sortedReplies"
                         :key="reply.id"
                         :comment="reply"
                     />

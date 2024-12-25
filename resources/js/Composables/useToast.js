@@ -6,22 +6,39 @@ let toast = null;
 export const useToastComposable = () => {
     const isToastLoaded = ref(false);
 
+    const errorConfig = {
+        position: 'bottom-center',
+        timeout: 5000,
+        closeOnClick: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: false,
+        draggable: true,
+        draggablePercent: 0.6,
+        showCloseButtonOnHover: false,
+        hideProgressBar: false,
+        closeButton: 'button',
+        icon: true,
+        rtl: false,
+    };
+
     const loadToast = async () => {
         if (!toast) {
-            const module = await import('vue-toastification');
-            toast = module.useToast();
+            const { useToast } = await import(
+               'vue-toastification'
+            );
+            toast = useToast();
             isToastLoaded.value = true;
         }
     };
 
-    const showToast = async (message, type = 'success') => {
+    const getToast = async () => {
         await loadToast();
-        toast[type](message); // Supports toast.success, toast.error, etc.
+        return toast;
     };
 
     return {
-        showToast,
-        loadToast,
+        getToast,
+        errorConfig,
         isToastLoaded,
     };
 };

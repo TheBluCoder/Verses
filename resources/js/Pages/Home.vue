@@ -1,12 +1,12 @@
 <script setup>
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
-import Poems from '@/Components/Post/Poems.vue';
+import Posts from '@/Components/Post/Posts.vue';
 import HeaderButton from '@/Components/Header/HeaderButton.vue';
 import { PlusCircleIcon } from '@heroicons/vue/24/outline/index.js';
 import { inject } from 'vue';
 import SearchBar from '@/Components/SearchBar.vue';
 
-let props = defineProps({ poems: { type: Array } });
+let props = defineProps({ posts: { type: Array } });
 const guest = inject('guest');
 
 defineOptions({ layout: DefaultLayout });
@@ -35,5 +35,5 @@ defineOptions({ layout: DefaultLayout });
     </div>
 
     <!--    displays the poems fetched from the DB-->
-    <poems :poems="props.poems"></poems>
+    <Posts :posts="props.posts"></Posts>
 </template>

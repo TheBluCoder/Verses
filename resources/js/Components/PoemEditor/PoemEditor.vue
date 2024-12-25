@@ -10,11 +10,12 @@ import { useForm } from '@inertiajs/vue3';
 import Toolbar from '@/Components/PoemEditor/Toolbar.vue';
 import { useToastComposable } from '@/Composables/useToast.js';
 import { ref } from 'vue';
+
 let show = ref(false);
+let errorMsg = 'Post is empty!';
+const characterLimit = 4000;
 
-const { showToast } = useToastComposable();
-const characterLimit = 1000;
-
+const { getToast, errorConfig } = useToastComposable();
 const form = useForm({
     title: '',
     content: '',
@@ -36,7 +37,7 @@ const editor = useEditor({
         },
     },
 
-    content: '',
+    comment: '',
     extensions: [
         StarterKit.configure({
             paragraph: {
@@ -49,27 +50,28 @@ const editor = useEditor({
             types: ['heading', 'paragraph'],
         }),
         CharacterCount.configure({
-            limit: characterLimit, // sets a thousand character limit
+            limit: characterLimit,
         }),
     ],
 });
-
 const submit = (editor) => {
     if (editor.getText().length > 0) {
         form.title = form.title || 'untitled';
         form.content = editor.getHTML();
         form.published = true;
 
-        form.post('/posts/store', {
+        form.post('/posts', {
             onSuccess: () => {
                 console.log('success');
+            },
+            onError: async () => {
+                const toast = await getToast();
+                toast(errorMsg, errorConfig);
             },
         });
     } else {
         console.log(typeof editor);
-        showToast('Post is empty!', 'error');
     }
-    console.log(form.content);
 };
 </script>
 <template>
@@ -103,7 +105,12 @@ const submit = (editor) => {
             :character-limit="characterLimit"
             :editor="editor"
         />
-        <div class="w-full rounded-lg border"></div>
+        <progress
+            v-if="editor"
+            class="h-1 w-full rounded-lg"
+            :max="characterLimit"
+            :value="editor.getText().length"
+        ></progress>
     </div>
     <ConfirmDialog v-model:toggled="show" v-if="show" />
 </template>

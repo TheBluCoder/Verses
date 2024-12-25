@@ -8,13 +8,13 @@ let props = defineProps({
     show: { type: Boolean, default: true },
 });
 
-const flashModal = defineAsyncComponent(() => import('../modals/flashModal.vue'));
+const flashModal = defineAsyncComponent(
+    () => import('../modals/flashModal.vue'),
+);
 let showFlashModal = ref(false);
 
-const linkUrl = () => {
-    return new URL(`/posts/${props.poem.id}`, window.location.href);
-};
-console.log(window.location.href);
+const linkUrl = new URL(`/posts/${props.poem.id}`, window.location.href);
+
 const copyToClipboard = () => {
     navigator.clipboard.writeText(linkUrl().toString()).then(() => {
         showFlashModal.value = true;
@@ -40,7 +40,7 @@ let sharePoem = (e) => {
             <li class="group px-2 py-1">
                 <noscript>
                     <a
-                        :href="`https://twitter.com/intent/tweet?text=${encodeURIComponent(poem.title)}&url=${encodeURIComponent(linkUrl)}`"
+                        :href="`https://twitter.com/intent/tweet?text=${encodeURIComponent(poem.title + '\n')}&url=${encodeURIComponent(linkUrl)}`"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Share on Twitter"
@@ -54,7 +54,7 @@ let sharePoem = (e) => {
                     @click="sharePoem"
                     data-type="twitter"
                     :data-url="linkUrl"
-                    :data-title="poem.title"
+                    :data-title="poem.title + '\n'"
                 >
                     <i class="fa-brands fa-x-twitter"></i>
                 </button>
@@ -63,7 +63,7 @@ let sharePoem = (e) => {
             <li class="group px-2 py-1">
                 <noscript>
                     <a
-                        :href="`https://api.whatsapp.com/send?text=${encodeURIComponent(poem.title)}&url=${encodeURIComponent(linkUrl)}`"
+                        :href="`https://api.whatsapp.com/send?text=${encodeURIComponent(poem.title + '\n')}&url=${encodeURIComponent(linkUrl)}`"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Share on Twitter"
@@ -77,7 +77,7 @@ let sharePoem = (e) => {
                     class="btn btn-default social_share"
                     data-type="whatsapp"
                     :data-url="linkUrl"
-                    :data-title="poem.title"
+                    :data-title="poem.title + '\n'"
                 >
                     <i class="fa-brands fa-whatsapp"></i>
                 </button>
@@ -85,7 +85,7 @@ let sharePoem = (e) => {
             <li class="group px-2 py-1">
                 <noscript>
                     <a
-                        :href="`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(poem.title)}&description=${encodeURIComponent(linkUrl)}`"
+                        :href="`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(poem.title + '\n')}&description=${encodeURIComponent(linkUrl)}`"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Share on Twitter"
@@ -98,16 +98,14 @@ let sharePoem = (e) => {
                     class="btn btn-default social_share"
                     data-type="pinterest"
                     :data-url="linkUrl"
-                    :data-title="poem.title"
+                    :data-title="poem.title + '\n'"
                 >
                     <i class="fa-brands fa-pinterest-p"></i>
                 </button>
             </li>
             <li class="group px-2 py-1">
                 <button type="button" @click="copyToClipboard">
-                    <ClipboardDocumentListIcon
-                        class=" h-5 w-5"
-                    />
+                    <ClipboardDocumentListIcon class="h-5 w-5" />
                 </button>
             </li>
             <flash-modal
