@@ -14,7 +14,7 @@ Route::controller(PostController::class)->group(function () {
 
     //----Displaying & Making Posts --------
     Route::get('/posts/create', 'create')->middleware(['auth'])->name('posts.create');
-    Route::post('/posts', 'store')->middleware(['auth'])->name('posts.create');
+    Route::post('/posts', 'store')->middleware(['auth'])->name('posts.store');
     Route::get('/posts/{post}', 'show')->middleware(['auth']);
     Route::get('/posts/{post}/edit', 'edit')->middleware(['auth'])->name('posts.edit');
     Route::patch('/posts/{post}', 'update')->middleware(['auth'])->name('posts.update');

@@ -1,15 +1,9 @@
 <script setup>
 import {
-    BoldIcon,
-    ItalicIcon,
-    StrikethroughIcon,
-    AlignCenterIcon,
-    AlignRightIcon,
-    AlignLeftIcon,
-    AlignJustifyIcon,
-    RedoDotIcon,
-    UndoDotIcon,
-} from 'lucide-vue-next';
+    formatButtons,
+    alignmentButtons,
+    historyButtons,
+} from '@/Constants/ToolBarConstants.js';
 import ToolBarButtons from '@/Components/PoemEditor/ToolBarButtons.vue';
 
 defineProps({
@@ -19,80 +13,49 @@ defineProps({
 
 <template>
     <div class="flex items-center gap-x-4">
-        <ToolBarButtons
-            @click="editor.chain().focus().toggleBold().run()"
-            :disabled="!editor.can().chain().focus().toggleBold().run()"
-            :enabled="editor.isActive('bold')"
+        <!-- Format Buttons -->
+        <template
+            v-for="(item, index) in formatButtons"
+            :key="'format-' + index"
         >
-            <BoldIcon class="w-4" />
-        </ToolBarButtons>
+            <ToolBarButtons
+                @click="item.action(editor)"
+                :disabled="item.isDisabled?.(editor)"
+                :enabled="item.isActive?.(editor)"
+            >
+                <component :is="item.icon" class="w-4" />
+            </ToolBarButtons>
+        </template>
 
-        <ToolBarButtons
-            @click="editor.chain().focus().toggleItalic().run()"
-            :disabled="!editor.can().chain().focus().toggleItalic().run()"
-            :enabled="editor.isActive('italic')"
+        <!-- Alignment Buttons -->
+        <div
+            class="fixed bottom-1/2 left-0 mx-1 flex flex-col rounded-full border border-gray-500 bg-white px-2 shadow-lg lg:static lg:block lg:space-x-4 lg:border-none lg:shadow-none"
         >
-            <ItalicIcon class="w-4" />
-        </ToolBarButtons>
+            <ToolBarButtons
+                v-for="(item, index) in alignmentButtons"
+                :key="'align-' + index"
+                @click="item.action(editor)"
+                :enabled="item.isActive?.(editor)"
+            >
+                <component :is="item.icon" class="w-4" />
+            </ToolBarButtons>
+        </div>
 
-        <ToolBarButtons
-            @click="editor.chain().focus().toggleStrike().run()"
-            :disabled="!editor.can().chain().focus().toggleStrike().run()"
-            :enabled="editor.isActive('strike')"
+        <!-- History Buttons -->
+        <template
+            v-for="(item, index) in historyButtons"
+            :key="'history-' + index"
         >
-            <StrikethroughIcon class="w-4" />
-        </ToolBarButtons>
-
-        <!-- Text Align Buttons -->
-        <ToolBarButtons
-            @click="editor.chain().focus().setTextAlign('left').run()"
-            :enabled="editor.isActive({ textAlign: 'left' })"
-        >
-            <AlignLeftIcon class="w-4" />
-        </ToolBarButtons>
-
-        <ToolBarButtons
-            @click="editor.chain().focus().setTextAlign('center').run()"
-            :enabled="editor.isActive({ textAlign: 'center' })"
-        >
-            <AlignCenterIcon class="w-4" />
-        </ToolBarButtons>
-
-        <ToolBarButtons
-            @click="editor.chain().focus().setTextAlign('right').run()"
-            :enabled="editor.isActive({ textAlign: 'right' })"
-        >
-            <AlignRightIcon class="w-4" />
-        </ToolBarButtons>
-
-        <ToolBarButtons
-            @click="editor.chain().focus().setTextAlign('justify').run()"
-            :enabled="editor.isActive({ textAlign: 'justify' })"
-        >
-            <AlignJustifyIcon class="w-4" />
-        </ToolBarButtons>
-
-        <!-- Undo/Redo -->
-        <button
-            @click="editor.chain().focus().redo().run()"
-            :disabled="!editor.can().redo()"
-            :class="{
-                'cursor-pointer p-1': true,
-                'text-gray-500': !editor.can().redo(),
-            }"
-        >
-            <RedoDotIcon class="w-4" />
-        </button>
-
-        <button
-            @click="editor.chain().focus().undo().run()"
-            :disabled="!editor.can().undo()"
-            :class="{
-                'cursor-pointer p-1': true,
-                'text-gray-500': !editor.can().undo(),
-            }"
-        >
-            <UndoDotIcon class="w-4" />
-        </button>
+            <button
+                @click="item.action(editor)"
+                :disabled="item.isDisabled?.(editor)"
+                :class="{
+                    'cursor-pointer p-1': true,
+                    'text-gray-500': item.isDisabled?.(editor),
+                }"
+            >
+                <component :is="item.icon" class="w-4" />
+            </button>
+        </template>
     </div>
 </template>

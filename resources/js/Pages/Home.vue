@@ -11,7 +11,6 @@ const guest = inject('guest');
 
 defineOptions({ layout: DefaultLayout });
 </script>
-
 <template>
     <!--    Set the title of the page-->
     <Head title="Home"></Head>

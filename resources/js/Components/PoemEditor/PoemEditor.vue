@@ -25,7 +25,7 @@ const form = useForm({
 const editor = useEditor({
     editorProps: {
         attributes: {
-            class: 'border-b border-x border-gray-400 rounded-b-lg py-2 px-4  min-h-[60dvh] max-h-[1000px] overflow-y-auto mx-auto focus:outline-none ',
+            class: 'h-[100dvh] focus:outline-none max-h-[100dvh] overflow-scroll',
         },
         handlePaste(view, event) {
             const clipboardData = event.clipboardData || window.clipboardData;
@@ -37,7 +37,7 @@ const editor = useEditor({
         },
     },
 
-    comment: '',
+    content: '',
     extensions: [
         StarterKit.configure({
             paragraph: {
@@ -77,7 +77,7 @@ const submit = (editor) => {
 <template>
     <Head title="Create Poem"></Head>
 
-    <div class="container mx-auto my-8 max-w-4xl">
+    <div class="container mx-auto my-8 max-w-4xl lg:min-w-[800px]">
         <section
             id="editor"
             v-if="editor"
@@ -85,7 +85,7 @@ const submit = (editor) => {
         >
             <Toolbar :editor="editor"></Toolbar>
 
-            <div class="flex items-center">
+            <div class="hidden items-center md:flex">
                 <primary-button @click="submit(editor)">Publish</primary-button>
                 <primary-button @click="show = true">Discard</primary-button>
             </div>
@@ -97,7 +97,10 @@ const submit = (editor) => {
                 v-model="form.title"
             />
         </form>
-        <EditorContent :editor="editor"></EditorContent>
+        <EditorContent
+            :editor="editor"
+            class="mx-auto max-h-[1000px] min-h-[60dvh] overflow-y-auto rounded-b-lg border-x border-b border-gray-400 px-4 py-2"
+        ></EditorContent>
     </div>
     <div class="m-auto w-full max-w-4xl">
         <character-count-component

@@ -16,8 +16,8 @@ class CommentIsLikedScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $userId = Auth::id();
-        $builder->selectSub( "SELECT EXISTS(SELECT 1 FROM likes WHERE likeable_id = comments.id AND user_id = $userId AND likeable_type = 'App\\Models\\Comment') ", "is_liked" );
+       $userId = Auth::id();
+       $builder->selectSub( "SELECT EXISTS(SELECT 1 FROM likes WHERE likeable_id = comments.id AND user_id = $userId AND likeable_type = 'App\\Models\\Comment') ", "is_liked" );
 
     }
 }

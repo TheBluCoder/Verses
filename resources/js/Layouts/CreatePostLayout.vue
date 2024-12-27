@@ -14,7 +14,7 @@ let isHomepage = computed(() => usePage().component === 'Home');
 </script>
 
 <template>
-    <div class="min-h-screen w-full rounded-lg bg-white p-6 shadow-lg md:px-12">
+    <div class="min-h-screen w-full rounded-lg bg-white p-2 md:p-3 lg:p-6 shadow-lg md:px-12">
         <!-- Left-aligned Social Media Icons -->
         <social-media-icons />
 

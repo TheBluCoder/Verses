@@ -42,7 +42,7 @@ class Comment extends Model
 
     public static function  booted()
     {
-        static::addGlobalScope(CommentIsLikedScope::class);
+       static::addGlobalScope(CommentIsLikedScope::class);
     }
 
 
