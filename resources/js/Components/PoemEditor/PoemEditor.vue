@@ -6,7 +6,7 @@ import CharacterCount from '@tiptap/extension-character-count';
 import CharacterCountComponent from './CharacterCount.vue';
 import PrimaryButton from '@/Components/forms/PrimaryButton.vue';
 import ConfirmDialog from '@/Components/modals/ConfirmDialog.vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm, usePage } from "@inertiajs/vue3";
 import Toolbar from '@/Components/PoemEditor/Toolbar.vue';
 import { useToastComposable } from '@/Composables/useToast.js';
 import { ref } from 'vue';
@@ -73,6 +73,7 @@ const submit = (editor) => {
         console.log(typeof editor);
     }
 };
+let intendedUrl = usePage().url;
 </script>
 <template>
     <Head title="Create Poem"></Head>
@@ -87,7 +88,7 @@ const submit = (editor) => {
 
             <div class="items-center md:flex">
                 <primary-button @click="submit(editor)">Publish</primary-button>
-                <primary-button @click="show = true" class="hidden md:block">Discard</primary-button>
+                <primary-button @click="show = true; intendedUrl='/'" class="hidden md:block">Discard</primary-button>
             </div>
         </section>
         <form class="w-full focus:border-none" @submit.prevent>
@@ -115,7 +116,7 @@ const submit = (editor) => {
             :value="editor.getText().length"
         ></progress>
     </div>
-    <ConfirmDialog v-model:toggled="show" v-if="show" />
+    <ConfirmDialog v-model:toggled="show" v-if="show" :intended="intendedUrl"/>
 </template>
 <style scoped>
 input:focus,

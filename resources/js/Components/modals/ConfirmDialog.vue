@@ -1,10 +1,17 @@
 <script setup>
+import { usePage } from '@inertiajs/vue3';
+
 let toggled = defineModel('toggled');
+defineProps({
+    intended: {
+        type: String,
+        default: usePage().url,
+    },
+});
 const handleSelection = (option) => {
     if (option === true) {
         console.log('');
     }
-
     toggled.value = !toggled.value;
 };
 </script>
@@ -33,13 +40,13 @@ const handleSelection = (option) => {
                         >
                             yes
                         </button>
-                        <button
-                            type="button"
+                        <Link
+                            :href="intended"
                             class="text-red-500"
                             @click="handleSelection(false)"
                         >
                             cancel
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

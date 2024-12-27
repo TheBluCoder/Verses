@@ -1,18 +1,10 @@
 <script setup>
-import { ref } from 'vue';
-import {
-    HomeIcon,
-    MagnifyingGlassIcon,
-    PlusCircleIcon,
-    InformationCircleIcon,
-} from '@heroicons/vue/24/outline';
+import { bottomBarNavItems } from '@/Constants/Navigation.js';
+import { useConfirmDialog } from '@/Composables/useConfirmDialog.js';
+import ConfirmDialog from '@/Components/modals/ConfirmDialog.vue';
 
-const navItems = [
-    { name: 'Home', icon: HomeIcon, path: '/' },
-    { name: 'Explore', icon: MagnifyingGlassIcon, path: '/explore' },
-    { name: 'create', icon: PlusCircleIcon, path: '/posts/create' },
-    { name: 'About', icon: InformationCircleIcon, path: '/about' },
-];
+const { intended, displayConfirmDialog, showConfirmDialog } =
+    useConfirmDialog();
 
 const handleCreatePost = () => {
     console.log('Opening create post form');
@@ -20,22 +12,27 @@ const handleCreatePost = () => {
 </script>
 
 <template>
-    <!-- Mobile Bottom Navigation -->
     <div
         class="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-100 bg-white md:hidden"
     >
         <nav class="mx-auto max-w-md px-4">
             <ul class="flex h-16 items-center justify-around">
-                <li v-for="item in navItems" :key="item.name">
-                    <a
-                        :href="item.path"
+                <li v-for="item in bottomBarNavItems" :key="item.name">
+                    <button
+                        type="button"
                         class="flex flex-col items-center p-2 text-gray-700 hover:text-indigo-600"
+                        @click.prevent="showConfirmDialog(item.path)"
                     >
                         <component :is="item.icon" class="h-6 w-6" />
                         <span class="mt-1 text-xs">{{ item.name }}</span>
-                    </a>
+                    </button>
                 </li>
             </ul>
         </nav>
     </div>
+    <ConfirmDialog
+        v-model:toggled="displayConfirmDialog"
+        v-if="displayConfirmDialog"
+        :intended="intended"
+    />
 </template>
