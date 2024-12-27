@@ -25,7 +25,7 @@ const form = useForm({
 const editor = useEditor({
     editorProps: {
         attributes: {
-            class: 'h-[100dvh] focus:outline-none max-h-[100dvh] overflow-scroll',
+            class: 'h-[100dvh] focus:outline-none max-h-[100dvh] overflow-auto scrollbar  scrollbar-none ',
         },
         handlePaste(view, event) {
             const clipboardData = event.clipboardData || window.clipboardData;
@@ -77,7 +77,7 @@ const submit = (editor) => {
 <template>
     <Head title="Create Poem"></Head>
 
-    <div class="container mx-auto my-8 max-w-4xl lg:min-w-[800px]">
+    <div class="container my-8">
         <section
             id="editor"
             v-if="editor"
@@ -85,9 +85,9 @@ const submit = (editor) => {
         >
             <Toolbar :editor="editor"></Toolbar>
 
-            <div class="hidden items-center md:flex">
+            <div class="items-center md:flex">
                 <primary-button @click="submit(editor)">Publish</primary-button>
-                <primary-button @click="show = true">Discard</primary-button>
+                <primary-button @click="show = true" class="hidden md:block">Discard</primary-button>
             </div>
         </section>
         <form class="w-full focus:border-none" @submit.prevent>
@@ -102,7 +102,7 @@ const submit = (editor) => {
             class="mx-auto max-h-[1000px] min-h-[60dvh] overflow-y-auto rounded-b-lg border-x border-b border-gray-400 px-4 py-2"
         ></EditorContent>
     </div>
-    <div class="m-auto w-full max-w-4xl">
+    <div class="m-auto w-full">
         <character-count-component
             v-if="editor"
             :character-limit="characterLimit"

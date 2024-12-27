@@ -11,9 +11,7 @@ const handleSelection = (option) => {
 
 <template>
     <Teleport to="body">
-        <Transition
-            enter-active-class="transform"
-        >
+        <Transition enter-active-class="transform">
             <div
                 v-if="toggled"
                 id="confirmDialog"

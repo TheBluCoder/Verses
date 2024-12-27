@@ -5,7 +5,7 @@ import {
     UserCircleIcon,
     MagnifyingGlassIcon,
     InformationCircleIcon,
-    ArrowRightOnRectangleIcon,
+    ArrowRightEndOnRectangleIcon,
 } from '@heroicons/vue/24/outline';
 import { usePage } from '@inertiajs/vue3';
 
@@ -74,7 +74,7 @@ const userProfile = {
                 :href="isLoggedIn ? '/logout' : '/login'"
                 class="flex cursor-pointer items-center overflow-hidden whitespace-nowrap rounded-lg px-2 py-3 text-gray-700 transition-colors duration-200 hover:bg-indigo-50 hover:text-indigo-600"
             >
-                <ArrowRightOnRectangleIcon class="h-6 w-6 shrink-0" />
+                <ArrowRightEndOnRectangleIcon class="h-6 w-6 shrink-0" />
                 <span
                     class="ml-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 >
