@@ -29,7 +29,7 @@ defineProps({
 
         <!-- Alignment Buttons -->
         <div
-            class="fixed -left-2 bottom-1/2 mx-1 flex flex-col rounded-full border border-gray-500 bg-white px-2 py-2 shadow-lg md:left-20 md:border-gray-200 md:shadow-lg lg:static lg:block lg:space-x-4 lg:border-none lg:shadow-none"
+            class="fixed -left-2 bottom-1/2 z-50 mx-1 flex flex-col rounded-full border border-gray-500 bg-white px-2 py-2 shadow-lg md:left-20 md:border-gray-200 md:shadow-lg lg:static lg:block lg:space-x-4 lg:border-none lg:bg-inherit lg:shadow-none"
         >
             <ToolBarButtons
                 v-for="(item, index) in alignmentButtons"

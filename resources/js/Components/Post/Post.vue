@@ -1,5 +1,6 @@
 <script setup>
 import { usePage } from '@inertiajs/vue3';
+import { provide } from "vue";
 import PostActions from '@/Components/Post/PostActions.vue';
 import dayjs from 'dayjs';
 import utc from 'dayjs-plugin-utc';
@@ -14,7 +15,8 @@ dayjs.extend(timezone);
 const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
 console.log(userTimezone);
 
-defineProps({ post: { type: Object, required: true } });
+const props = defineProps({ post: { type: Object, required: true } });
+provide('post', props.post);
 </script>
 
 <template>
@@ -23,7 +25,8 @@ defineProps({ post: { type: Object, required: true } });
             <!--            Post content -->
             <div>
                 <h2
-                    class="font-serif text-xl text-neutral-950 md:text-2xl lg:text-3xl"
+                    :id="'PostTitle' + post.id"
+                    class="flex justify-between font-serif text-xl text-neutral-950 md:text-2xl lg:text-3xl"
                     v-html="post?.title"
                 ></h2>
                 <pre

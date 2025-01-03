@@ -21,11 +21,12 @@ const handleSelection = (option) => {
         <Transition enter-active-class="transform">
             <div
                 v-if="toggled"
+                @click.stop="toggled = !toggled"
                 id="confirmDialog"
-                class="fixed left-0 top-0 flex min-h-screen min-w-[100vw] items-center justify-center"
+                class="fixed left-0 top-0 flex min-h-screen min-w-[100vw] items-center justify-center bg-gray-400 opacity-75"
             >
                 <div
-                    class="modal z-50 min-h-[12rem] w-1/5 min-w-[20rem] place-content-center rounded-lg border border-orange-700 bg-gray-50 text-center shadow-lg shadow-gray-900"
+                    class="modal z-50 min-h-[12rem] w-1/5 min-w-[20rem] place-content-center rounded-lg border border-orange-700 bg-gray-100 text-center opacity-100 shadow-lg shadow-gray-900"
                 >
                     <hr
                         class="w-full border-orange-700 dark:border-orange-700"
@@ -54,9 +55,4 @@ const handleSelection = (option) => {
     </Teleport>
 </template>
 
-<style scoped>
-#confirmDialog {
-    background-color: dimgray;
-    opacity: 0.7;
-}
-</style>
+<style scoped></style>

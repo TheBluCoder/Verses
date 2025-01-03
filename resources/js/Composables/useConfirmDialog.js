@@ -1,5 +1,5 @@
-import { ref } from 'vue';
 import { usePage } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 export const useConfirmDialog = () => {
     const intended = ref(usePage().url); // Tracks the intended URL

@@ -5,6 +5,7 @@ use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use function Pest\Laravel\delete;
 
 Route::controller(PostController::class)->group(function () {
 
@@ -18,7 +19,7 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/posts/{post}', 'show')->middleware(['auth']);
     Route::get('/posts/{post}/edit', 'edit')->middleware(['auth'])->name('posts.edit');
     Route::patch('/posts/{post}', 'update')->middleware(['auth'])->name('posts.update');
-    Route::delete('/posts/{post}', 'destroy')->middleware(['auth'])->name('posts.destroy');
+    Route::delete('/posts/{post}', 'destroy')->middleware(['auth','can:delete,post'])->name('posts.destroy');
 });
 
     //------ Liking Posts & Comments ---------

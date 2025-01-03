@@ -5,6 +5,7 @@ import { ChatBubbleLeftIcon } from '@heroicons/vue/24/outline';
 import { usePage } from '@inertiajs/vue3';
 import { directive as clickAway } from 'vue3-click-away';
 import LikeReaction from '@/Components/LikeReaction.vue';
+import EllipsisDropdownOptions from '@/Components/Post/EllipsisDropdownOptions.vue';
 
 const props = defineProps({
     post: {
@@ -60,6 +61,15 @@ const isAuthenticated = computed(() => usePage().props.auth.user);
                 ></i>
             </button>
             <SocialShare :show="ShowShareList" :poem="post" />
+        </div>
+
+        <div>
+            <Teleport :to="'#PostTitle' + post.id" defer>
+                <EllipsisDropdownOptions
+                    :post-author="post.author.username"
+                    :post-id="post.id"
+                />
+            </Teleport>
         </div>
     </div>
 </template>

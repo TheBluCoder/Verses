@@ -15,7 +15,7 @@ export default {
         >
             <div
                 v-if="condition"
-                class="fixed bottom-10 right-1/2 rounded-lg bg-gray-700 p-2 text-sm/relaxed text-green-500"
+                class="fixed bottom-20 right-[30%] rounded-lg bg-gray-700 p-2 text-sm/relaxed text-green-500 lg:right-[47%]"
             >
                 <p>{{ message }}</p>
             </div>
