@@ -23,10 +23,10 @@ const handleSelection = (option) => {
                 v-if="toggled"
                 @click.stop="toggled = !toggled"
                 id="confirmDialog"
-                class="fixed left-0 top-0 flex min-h-screen min-w-[100vw] items-center justify-center bg-gray-400 opacity-75"
+                class="fixed left-0 top-0 z-50 flex min-h-screen min-w-[100vw] items-center justify-center bg-gray-400 opacity-75"
             >
                 <div
-                    class="modal z-50 min-h-[12rem] w-1/5 min-w-[20rem] place-content-center rounded-lg border border-orange-700 bg-gray-100 text-center opacity-100 shadow-lg shadow-gray-900"
+                    class="modal min-h-[12rem] w-1/5 min-w-[20rem] place-content-center rounded-lg border border-orange-700 bg-gray-100 text-center opacity-100 shadow-lg shadow-gray-900"
                 >
                     <hr
                         class="w-full border-orange-700 dark:border-orange-700"

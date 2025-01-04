@@ -10,7 +10,6 @@ import { inject, ref } from 'vue';
 import { directive as clickAway } from 'vue3-click-away';
 import { usePage } from '@inertiajs/vue3';
 
-const guest = inject('guest');
 const props = defineProps({
     postId: {
         type: Number,
@@ -60,7 +59,6 @@ const ellipsisOptions = [
 
 <template>
     <div
-        v-show="!guest"
         class="relative"
         :class="{ 'flex-shrink-0': show }"
         v-click-away="() => (show = false)"

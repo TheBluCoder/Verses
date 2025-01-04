@@ -3,9 +3,9 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use function Pest\Laravel\delete;
 
 Route::controller(PostController::class)->group(function () {
 
@@ -22,6 +22,11 @@ Route::controller(PostController::class)->group(function () {
     Route::delete('/posts/{post}', 'destroy')->middleware(['auth','can:delete,post'])->name('posts.destroy');
 });
 
+    //-------- Users & UsersProfile ------
+Route::controller(UserController::class)->group(function () {
+    Route::get('/{user:username}/profile',  'show')->name('user.show')->middleware(['auth']);
+});
+
     //------ Liking Posts & Comments ---------
 Route::controller(LikesController::class)->group(function () {
     Route::post('/posts/{post}/like', 'store' )->middleware(['auth'])->name('post.like');
@@ -35,5 +40,7 @@ Route::controller(CommentController::class)->group(function () {
     Route::post('/comments', 'store' )->middleware(['auth'])->name('post.comment');
     Route::delete('/comments/{comment}', 'destroy' )->middleware(['auth, can:delete'])->name('post.comment.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';

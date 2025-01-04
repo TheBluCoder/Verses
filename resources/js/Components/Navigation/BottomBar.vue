@@ -1,5 +1,5 @@
 <script setup>
-import { bottomBarNavItems } from '@/Constants/Navigation.js';
+import { getBottomBarNavItems } from '@/Constants/Navigation.js';
 import { useConfirmDialog } from '@/Composables/useConfirmDialog.js';
 import ConfirmDialog from '@/Components/modals/ConfirmDialog.vue';
 
@@ -17,7 +17,7 @@ const handleCreatePost = () => {
     >
         <nav class="mx-auto max-w-md px-4">
             <ul class="flex h-16 items-center justify-around">
-                <li v-for="item in bottomBarNavItems" :key="item.name">
+                <li v-for="item in getBottomBarNavItems($page.props.auth)" :key="item.name">
                     <button
                         type="button"
                         class="flex flex-col items-center p-2 text-gray-700 hover:text-indigo-600"

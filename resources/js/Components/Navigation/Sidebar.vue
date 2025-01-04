@@ -1,12 +1,9 @@
 <script setup>
 import { computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';
-import { navItems, getUserProfile } from '@/Constants/Navigation.js';
-import { useConfirmDialog } from '@/Composables/useConfirmDialog.js';
-import ConfirmDialog from '@/Components/modals/ConfirmDialog.vue';
-
-const { intended, displayConfirmDialog, showConfirmDialog } =
-    useConfirmDialog();
+import { getSideBarNavItems, getUserProfile } from '@/Constants/Navigation.js';
+import { Link } from '@inertiajs/vue3';
+import CreatePostSideBarButtons from '@/Components/Navigation/CreatePostSideBarButtons.vue';
 
 const isLoggedIn = computed(() => usePage().props.auth.user ?? false);
 const userProfile = computed(() => getUserProfile(usePage().props.auth));
@@ -18,14 +15,18 @@ const userProfile = computed(() => getUserProfile(usePage().props.auth));
     >
         <nav class="py-8">
             <ul>
-                <li v-for="item in navItems" :key="item.name">
-                    <button
-                        type="button"
+                <li v-for="item in getSideBarNavItems($page.props.auth)" :key="item.name">
+                    <component
+                        :is="
+                            $page.url === '/posts/create'
+                                ? CreatePostSideBarButtons
+                                : Link
+                        "
                         class="flex w-full items-center overflow-hidden whitespace-nowrap px-4 py-4 text-gray-700 transition-colors duration-200 hover:bg-indigo-50 hover:text-indigo-600"
                         :class="{
                             'bg-indigo-200': $page.component === item.name,
                         }"
-                        @click.prevent="showConfirmDialog(item.path)"
+                        :href="item.path"
                     >
                         <component :is="item.icon" class="h-6 w-6 shrink-0" />
                         <span
@@ -33,7 +34,7 @@ const userProfile = computed(() => getUserProfile(usePage().props.auth));
                         >
                             {{ item.name }}
                         </span>
-                    </button>
+                    </component>
                 </li>
             </ul>
         </nav>
@@ -56,9 +57,4 @@ const userProfile = computed(() => getUserProfile(usePage().props.auth));
             </div>
         </div>
     </div>
-    <ConfirmDialog
-        v-model:toggled="displayConfirmDialog"
-        v-if="displayConfirmDialog"
-        :intended="intended"
-    />
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 import SocialShare from '@/Components/Post/SocialShare.vue';
 import { ChatBubbleLeftIcon } from '@heroicons/vue/24/outline';
 import { usePage } from '@inertiajs/vue3';
@@ -19,8 +19,8 @@ const ShowShareList = ref(false);
 const closeSocialShare = () => {
     ShowShareList.value = false;
 };
-
-const isAuthenticated = computed(() => usePage().props.auth.user);
+const guest = inject('guest');
+const isAuthenticated = !guest;
 </script>
 
 <template>
@@ -63,7 +63,7 @@ const isAuthenticated = computed(() => usePage().props.auth.user);
             <SocialShare :show="ShowShareList" :poem="post" />
         </div>
 
-        <div>
+        <div v-if="!guest">
             <Teleport :to="'#PostTitle' + post.id" defer>
                 <EllipsisDropdownOptions
                     :post-author="post.author.username"
