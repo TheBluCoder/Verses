@@ -1,11 +1,13 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import { getSideBarNavItems, getUserProfile } from '@/Constants/Navigation.js';
 import { Link } from '@inertiajs/vue3';
+import { LogInIcon, LogOutIcon } from 'lucide-vue-next';
 import CreatePostSideBarButtons from '@/Components/Navigation/CreatePostSideBarButtons.vue';
 
-const isLoggedIn = computed(() => usePage().props.auth.user ?? false);
+const guest = inject('guest');
+
 const userProfile = computed(() => getUserProfile(usePage().props.auth));
 </script>
 
@@ -15,7 +17,10 @@ const userProfile = computed(() => getUserProfile(usePage().props.auth));
     >
         <nav class="py-8">
             <ul>
-                <li v-for="item in getSideBarNavItems($page.props.auth)" :key="item.name">
+                <li
+                    v-for="item in getSideBarNavItems($page.props.auth)"
+                    :key="item.name"
+                >
                     <component
                         :is="
                             $page.url === '/posts/create'
@@ -41,7 +46,7 @@ const userProfile = computed(() => getUserProfile(usePage().props.auth));
 
         <div class="border-t border-gray-100 p-4">
             <div
-                v-if="isLoggedIn"
+                v-if="!guest"
                 class="mb-4 flex items-center space-x-4 overflow-hidden whitespace-nowrap"
             >
                 <img
@@ -50,11 +55,31 @@ const userProfile = computed(() => getUserProfile(usePage().props.auth));
                     class="h-6 w-6 shrink-0 rounded-full"
                 />
                 <span
-                    class="font-medium text-gray-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    class="text-sm font-medium text-gray-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 >
                     {{ userProfile.name }}
                 </span>
             </div>
+
+            <Link
+                :href="guest ? '/login' : 'logout'"
+                :method="guest ? 'GET' : 'POST'"
+                :as="guest ? 'link' : 'button'"
+                v-if="!guest"
+                class="mb-4 flex cursor-pointer items-center space-x-4 overflow-hidden whitespace-nowrap"
+                :class="{ 'text-red-500': !guest }"
+            >
+                <component
+                    :is="guest ? LogInIcon : LogOutIcon"
+                    :alt="userProfile.name"
+                    class="h-4 w-6 shrink-0 text-gray-500"
+                />
+                <span
+                    class="hidden text-sm opacity-0 transition-opacity duration-300 group-hover:opacity-100 lg:block"
+                >
+                    {{ guest ? 'Sign in' : 'Sign out' }}
+                </span>
+            </Link>
         </div>
     </div>
 </template>

@@ -2,8 +2,7 @@
 import { ref } from 'vue';
 import ProfileHeader from '@/Components/Profile/ProfileHeader.vue';
 import ProfileStats from '@/Components/Profile/ProfileStats.vue';
-import ContentTabs from '@/Components/Profile/ContentTabs.vue';
-import { Heart, Share2 } from 'lucide-vue-next';
+import PageTab from '@/Components/Profile/PageTab.vue';
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 
 defineOptions({
@@ -24,7 +23,7 @@ const user = ref({
 </script>
 
 <template>
-    <div class="mx-auto max-w-4xl px-4 py-8">
+    <div class="mx-auto lg:max-w-4xl">
         <!-- Profile Section -->
         <div class="border-b bg-white p-6 shadow-md">
             <ProfileHeader v-bind="user" />
@@ -37,7 +36,7 @@ const user = ref({
 
         <!-- Content Tabs -->
         <div class="bg-white shadow-md">
-            <ContentTabs :drafts="user.drafts" :bookmarks="user.bookmarks" />
+            <PageTab :drafts="user.drafts" :bookmarks="user.bookmarks" />
         </div>
 
         <!-- Sample Poetry Post -->

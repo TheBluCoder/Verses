@@ -1,8 +1,7 @@
 <script setup>
-import { computed, inject, ref } from 'vue';
+import { computed, inject, ref } from "vue";
 import SocialShare from '@/Components/Post/SocialShare.vue';
 import { ChatBubbleLeftIcon } from '@heroicons/vue/24/outline';
-import { usePage } from '@inertiajs/vue3';
 import { directive as clickAway } from 'vue3-click-away';
 import LikeReaction from '@/Components/LikeReaction.vue';
 import EllipsisDropdownOptions from '@/Components/Post/EllipsisDropdownOptions.vue';
@@ -20,7 +19,6 @@ const closeSocialShare = () => {
     ShowShareList.value = false;
 };
 const guest = inject('guest');
-const isAuthenticated = !guest;
 </script>
 
 <template>
@@ -39,7 +37,7 @@ const isAuthenticated = !guest;
 
         <!-- Comment Button -->
         <Link
-            v-show="isAuthenticated"
+            v-show="!guest"
             :href="`/posts/${post.id}`"
             class="flex items-center space-x-1 text-gray-600 transition-colors duration-500 hover:text-red-600"
         >

@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\LikesController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\web\CommentController;
+use App\Http\Controllers\web\LikesController;
+use App\Http\Controllers\web\PostController;
+use App\Http\Controllers\web\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
