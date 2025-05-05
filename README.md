@@ -1,6 +1,15 @@
 # Verses - Collaborative Poetry Platform
 
 <p align="center">
+  <strong style="font-size:2em; font-family:serif; color:#4F46E5;">"Verses"</strong>
+  <span style="color:#64748B; font-size:1em; font-weight:300;">| where words take flight</span>
+</p>
+
+<p align="center">
+  <em>(Logo as implemented in <code>resources/js/Components/Header/BrandLogo.vue</code>)</em>
+</p>
+
+<p align="center">
   <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
 </p>
 
