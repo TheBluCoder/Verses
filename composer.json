@@ -7,12 +7,16 @@
     "require": {
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^1.0",
-        "laravel/framework": "^11.9",
+        "laravel/framework": "11.31.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "league/commonmark": "2.6.0",
+        "mews/purifier": "^3.4",
+        "predis/predis": "2.0",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.14",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.2",
         "laravel/pail": "^1.1",

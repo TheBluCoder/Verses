@@ -1,113 +1,125 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import InputError from '@/Components/Form/InputError.vue';
+import InputLabel from '@/Components/Form/InputLabel.vue';
+import TextInput from '@/Components/Form/TextInput.vue';
+import Password from '@/Components/Form/Password.vue';
+import GuestLayout from '@/Layouts/DefaultLayout.vue';
+import { Head, useForm } from '@inertiajs/vue3';
+
+defineOptions({ layout: GuestLayout });
 
 const form = useForm({
-    name: '',
+    username: '',
     email: '',
     password: '',
     password_confirmation: '',
+    favoritePoem: '',
 });
 
-const submit = () => {
+const handleSubmit = () => {
     form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
+        onFinish: () => form.reset('password', 'confirmPassword'),
     });
 };
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Register" />
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
-
-                <TextInput
-                    id="name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.name"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
-
-                <InputError class="mt-2" :message="form.errors.name" />
+    <Head title="Create-Account"></Head>
+    <div
+        class="flex min-h-screen items-center justify-center bg-gradient-to-b from-gray-50 to-indigo-50 px-4 py-12 sm:px-6 lg:px-8"
+    >
+        <div class="w-full max-w-md">
+            <div class="mb-8 text-center">
+                <h2 class="mb-2 font-serif text-4xl text-gray-900">
+                    Join Verses
+                </h2>
+                <p class="italic text-gray-600">
+                    "Where every word takes flight"
+                </p>
             </div>
 
-            <div class="mt-4">
-                <InputLabel for="email" value="Email" />
+            <div
+                class="rounded-lg border border-gray-100 bg-white p-8 shadow-lg"
+            >
+                <form @submit.prevent="handleSubmit" class="space-y-6">
+                    <!-- Pen Name -->
+                    <div>
+                        <InputLabel for="penName">Pen Name</InputLabel>
+                        <TextInput
+                            autofocus
+                            v-model="form.username"
+                            id="penName"
+                            name="penName"
+                            placeholder="Enter your pen name"
+                        />
+                        <InputError :message="form.errors.username" />
+                    </div>
 
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autocomplete="username"
-                />
+                    <!-- Email -->
+                    <div>
+                        <InputLabel for="email">Email</InputLabel>
+                        <TextInput
+                            v-model="form.email"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter email"
+                        />
+                        <InputError :message="form.errors.email" />
+                    </div>
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                    <!-- Password -->
+                    <div>
+                        <InputLabel for="password">Password</InputLabel>
+                        <Password
+                            :disabled="true"
+                            v-model="form.password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter password"
+                        />
+                        <InputError :message="form.errors.password" />
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div>
+                        <InputLabel for="confirmPassword"
+                            >Confirm Password</InputLabel
+                        >
+                        <Password
+                            v-model="form.password_confirmation"
+                            id="confirmPassword"
+                            name="password_confirmation"
+                            placeholder="Re-enter password"
+                        />
+                        <InputError
+                            :message="form.errors.password_confirmation"
+                        />
+                    </div>
+
+                    <!-- Favorite Post -->
+                    <div>
+                        <InputLabel for="favoritePoem"
+                            >Favorite Poem (Optional)</InputLabel
+                        >
+                        <textarea
+                            v-model="form.favoritePoem"
+                            id="favoritePoem"
+                            rows="3"
+                            class="mt-1 block w-full resize-none rounded-lg border border-gray-200 px-4 py-2 font-light text-gray-700 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                            placeholder="Share a verse that moves you..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button
+                        type="submit"
+                        class="w-full transform rounded-lg border border-transparent bg-purple-600 px-4 py-3 font-serif text-sm tracking-wide text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                        Begin Your Poetic Journey
+                    </button>
+                </form>
             </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel
-                    for="password_confirmation"
-                    value="Confirm Password"
-                />
-
-                <TextInput
-                    id="password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password_confirmation"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError
-                    class="mt-2"
-                    :message="form.errors.password_confirmation"
-                />
-            </div>
-
-            <div class="mt-4 flex items-center justify-end">
-                <Link
-                    :href="route('login')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Already registered?
-                </Link>
-
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Register
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
+        </div>
+    </div>
 </template>

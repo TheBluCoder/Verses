@@ -1,5 +1,7 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+import plugin from 'tailwind-scrollbar';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -18,5 +20,5 @@ export default {
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, typography, plugin],
 };

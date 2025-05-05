@@ -10,6 +10,7 @@
         "@inertiajs/vue3": "^1.0.0",
         "@rushstack/eslint-patch": "^1.8.0",
         "@tailwindcss/forms": "^0.5.3",
+        "@tailwindcss/typography": "^0.5.15",
         "@vitejs/plugin-vue": "^5.0.0",
         "@vue/eslint-config-prettier": "^9.0.0",
         "autoprefixer": "^10.4.20",
@@ -18,12 +19,44 @@
         "eslint": "^8.57.0",
         "eslint-plugin-vue": "^9.23.0",
         "laravel-vite-plugin": "^1.0",
-        "postcss": "^8.4.47",
+        "postcss": "^8.4.49",
         "prettier": "^3.3.0",
         "prettier-plugin-organize-imports": "^4.0.0",
         "prettier-plugin-tailwindcss": "^0.6.5",
         "tailwindcss": "^3.4.14",
-        "vite": "^5.0",
+        "vite": "^6.3.0",
         "vue": "^3.4.0"
+    },
+    "dependencies": {
+        "@coreui/coreui": "^5.2.0",
+        "@coreui/vue": "^5.4.1",
+        "@heroicons/vue": "^2.2.0",
+        "@inertiajs/progress": "^0.1.2",
+        "@tiptap/core": "^2.10.3",
+        "@tiptap/extension-character-count": "^2.10.3",
+        "@tiptap/extension-history": "^2.10.3",
+        "@tiptap/extension-image": "^2.10.3",
+        "@tiptap/extension-placeholder": "^2.10.3",
+        "@tiptap/extension-text-align": "^2.10.3",
+        "@tiptap/pm": "^2.10.3",
+        "@tiptap/starter-kit": "^2.10.3",
+        "@tiptap/vue-3": "^2.10.3",
+        "date-fns": "^4.1.0",
+        "dayjs": "^1.11.13",
+        "dayjs-plugin-utc": "^0.1.2",
+        "dayjs-timezone-iana-plugin": "^0.1.0",
+        "flowbite-typography": "^1.0.5",
+        "js-share": "^2.3.2",
+        "lucide-vue-next": "^0.468.0",
+        "pinia": "^2.3.0",
+        "tailwind-scrollbar": "^3.1.0",
+        "vue-toastification": "^2.0.0-rc.5",
+        "vue3-click-away": "^1.2.4"
+    },
+    "resolutions": {
+        "prosemirror-model": "1.19.3"
+    },
+    "overrides": {
+        "prosemirror-model": "1.19.3"
     }
 }
