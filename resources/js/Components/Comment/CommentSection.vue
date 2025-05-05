@@ -25,7 +25,7 @@ const sortedComments = computed(() => {
             />
         </div>
 
-        <!-- Comments List -->
+        <!-- Comment List -->
         <div class="space-y-4 p-4">
             <Comment
                 v-for="comment in sortedComments"

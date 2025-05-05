@@ -26,7 +26,7 @@ let isHomepage = computed(() => usePage().component === 'Home');
             ></Header>
 
             <!-- Main Content -->
-            <div class="md:m-auto md:w-3/4 lg:w-1/2">
+            <div class="md:m-auto md:w-3/4">
                 <slot />
             </div>
         </div>

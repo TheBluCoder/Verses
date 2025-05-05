@@ -1,5 +1,5 @@
 <script>
-import ListItem from "@/Components/forms/ListItem.vue";
+import ListItem from "@/Components/Form/ListItem.vue";
 
 export default {
     name: 'DropDownList',

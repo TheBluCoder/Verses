@@ -27,7 +27,14 @@ class CreateAccountRequest extends FormRequest
             //
             'username' => 'required|string|unique:users,username',
             'email' => 'required|string|email|unique:users,email',
+            'displayName' => 'required|string',
             'password' => ['required', 'string', 'confirmed', Password::min(8)->mixedCase()],
         ];
+    }
+
+    protected function  prepareForValidation():void
+    {
+        $displayName = $this->input('username');
+        $this->merge(['displayName' => $displayName]);
     }
 }

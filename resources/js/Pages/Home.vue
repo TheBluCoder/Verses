@@ -34,5 +34,5 @@ defineOptions({ layout: DefaultLayout });
     </div>
 
     <!--    displays the poems fetched from the DB-->
-    <Posts :posts="props.posts"></Posts>
+    <Posts :posts="props.posts" ></Posts>
 </template>

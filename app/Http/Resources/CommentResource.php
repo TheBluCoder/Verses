@@ -15,7 +15,6 @@ class CommentResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-//        dd($this->likesCount);
        return  [
                 "id"=>$this->id,
                 "author"=>$this->author,

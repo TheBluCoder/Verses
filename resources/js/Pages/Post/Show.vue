@@ -1,7 +1,7 @@
 <script setup>
 import GuestLayout from '@/Layouts/DefaultLayout.vue';
 import Post from '@/Components/Post/Post.vue';
-import CommentSection from '@/Components/Comments/CommentSection.vue';
+import CommentSection from '@/Components/Comment/CommentSection.vue';
 import { provide } from 'vue';
 defineOptions({ layout: GuestLayout });
 var props = defineProps({

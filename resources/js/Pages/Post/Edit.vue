@@ -6,6 +6,17 @@ import { useToastComposable } from '@/Composables/useToast.js';
 defineOptions({
     layout: CreatePostLayout,
 });
+
+const props = defineProps({
+    post: {
+        type: Object,
+        required: true,
+
+        validator: (value) => {
+            return 'title' in value && 'content' in value;
+        },
+    },
+});
 const { getToast, errorConfig } = useToastComposable();
 let errorMsg = 'Post is empty!';
 const submit = (form, editor) => {
@@ -16,7 +27,7 @@ const submit = (form, editor) => {
         form.content = editor.getHTML();
         form.published = true;
 
-        form.post('/posts', {
+        form.patch(`/posts/${props.post.id}`, {
             onSuccess: () => {
                 console.log('success');
             },
@@ -30,7 +41,9 @@ const submit = (form, editor) => {
 </script>
 
 <template>
-    <div><PoemEditor @submit-form="submit(...$event)" /></div>
+    <div>
+        <PoemEditor :initial-content="post" @submit-form="submit(...$event)" />
+    </div>
 </template>
 
 <style scoped></style>

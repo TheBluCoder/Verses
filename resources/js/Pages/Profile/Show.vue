@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, provide } from 'vue';
 import ProfileHeader from '@/Components/Profile/ProfileHeader.vue';
 import ProfileStats from '@/Components/Profile/ProfileStats.vue';
 import PageTab from '@/Components/Profile/PageTab.vue';
@@ -8,24 +8,28 @@ import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 defineOptions({
     layout: DefaultLayout,
 });
-
+const props = defineProps({
+    user: Object,
+    posts: Object,
+});
 const user = ref({
-    name: 'Sarah Parker',
-    username: '@versesbyparker',
+    displayName: props.user.displayName,
+    username: props.user.username,
     bio: 'Weaving words into tapestries of emotion. Poetry editor @LitMag. Published author of "Midnight Musings"',
     followers: 1234,
     following: 567,
     bookmarks: 89,
     drafts: 12,
     joinDate: 'January 2024',
-    profileImage: 'https://placekitten.com/200/200',
+    profileImage: props.user.profilePic,
 });
+provide('posts', props.posts);
 </script>
 
 <template>
-    <div class="mx-auto lg:max-w-4xl">
+    <div class="mx-auto w-full">
         <!-- Profile Section -->
-        <div class="border-b bg-white p-6 shadow-md">
+        <div class="border-b bg-white p-6 shadow-lg">
             <ProfileHeader v-bind="user" />
             <ProfileStats
                 :followers="user.followers"
@@ -36,7 +40,10 @@ const user = ref({
 
         <!-- Content Tabs -->
         <div class="bg-white shadow-md">
-            <PageTab :drafts="user.drafts" :bookmarks="user.bookmarks" />
+            <PageTab
+                :draftsCount="user.drafts"
+                :bookmarksCount="user.bookmarks"
+            />
         </div>
 
         <!-- Sample Poetry Post -->

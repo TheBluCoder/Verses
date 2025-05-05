@@ -17,7 +17,12 @@ class PostIsLikedScope implements Scope
     public function apply(Builder $builder, Model $model): void
     {
         $userId = Auth::id()?? "null";
-        $builder->selectSub( "SELECT EXISTS(SELECT 1 FROM likes WHERE likeable_id = posts.id AND user_id = $userId AND likeable_type = 'App\\Models\\Post') ", "is_liked" );
+        $builder->selectSub(function ($query) use ($userId) {
+            $query->selectRaw(
+                'EXISTS(SELECT 1 FROM likes WHERE likeable_id = posts.id AND user_id = ? AND likeable_type = ?)',
+                [$userId, 'App\Models\Post']
+            );
+        }, 'is_liked');
 
     }
 }

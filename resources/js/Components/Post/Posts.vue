@@ -1,6 +1,5 @@
 <script setup>
 import Post from '@/Components/Post/Post.vue';
-import JSShare from 'js-share';
 defineProps({ posts: { type: Array, required: true } });
 </script>
 <template>

@@ -1,6 +1,6 @@
 <script setup>
 import { usePage } from '@inertiajs/vue3';
-import { provide } from "vue";
+import { provide } from 'vue';
 import PostActions from '@/Components/Post/PostActions.vue';
 import dayjs from 'dayjs';
 import utc from 'dayjs-plugin-utc';
@@ -15,12 +15,20 @@ dayjs.extend(timezone);
 const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
 console.log(userTimezone);
 
-const props = defineProps({ post: { type: Object, required: true } });
+const props = defineProps({
+    post: { type: Object, required: true },
+    showCondition: {
+        type: Function,
+        required: false,
+    },
+});
+
+const showFull = usePage().component.toLowerCase() === 'post/show';
 provide('post', props.post);
 </script>
 
 <template>
-    <div class="group mt-32 border-b pb-2">
+    <div class="group m-8 border-b pb-2">
         <section>
             <!--            Post content -->
             <div>
@@ -30,14 +38,14 @@ provide('post', props.post);
                     v-html="post?.title"
                 ></h2>
                 <pre
-                    class="mt-4 w-full text-wrap font-sans text-neutral-700 md:text-lg lg:text-xl"
+                    class="mt-4 line-clamp-[10] w-full text-wrap font-sans text-neutral-700 md:text-lg lg:text-xl"
                     :class="{
-                        'line-clamp-[10]': usePage().component === 'Home',
+                        'line-clamp-none': showFull,
                     }"
                     v-html="post.content"
                 ></pre>
 
-                <div v-if="usePage().component === 'Home'">
+                <div v-show="usePage().component.toLowerCase() !== 'post/show'">
                     <Link
                         :href="`/posts/${post.id}`"
                         class="mt-4 inline-block font-medium text-red-500"

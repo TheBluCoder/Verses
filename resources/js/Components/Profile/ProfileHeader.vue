@@ -1,6 +1,6 @@
 <script setup>
-defineProps({
-    name: String,
+const props = defineProps({
+    displayName: String,
     username: String,
     bio: String,
     profileImage: String,
@@ -12,8 +12,8 @@ defineProps({
         <!-- Profile Photo -->
         <div class="h-32 w-32 overflow-hidden rounded-full bg-gray-200">
             <img
-                :src="$page.props.auth.user.profilePic"
-                :alt="name"
+                :src="props.profileImage"
+                :alt="username"
                 class="h-full w-full object-cover"
             />
         </div>
@@ -22,9 +22,9 @@ defineProps({
         <div class="flex-1">
             <div class="flex items-start justify-between">
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-900">{{ name }}</h1>
+                    <h1 class="text-2xl font-bold text-gray-900">{{ props.displayName }}</h1>
                     <p class="text-gray-500">
-                        {{ '@' + $page.props.auth.user.username }}
+                        {{ '@' + props.username }}
                     </p>
                 </div>
                 <button

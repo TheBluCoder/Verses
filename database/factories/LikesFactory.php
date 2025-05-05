@@ -23,7 +23,7 @@ class LikesFactory extends Factory
             //
             'user_id'=> User::factory(),
             'likeable_id'=> fake()->randomElement([Post::factory(), Comment::factory()]),
-            'likeable_type'=> fake()->randomElement([Post::factory(), Comment::factory()]),
+            'likeable_type'=> fake()->randomElement([Post::class, Comment::class]),
         ];
     }
 

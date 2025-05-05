@@ -1,11 +1,11 @@
 <script setup>
-import Checkbox from '@/Components/forms/Checkbox.vue';
+import Checkbox from '@/Components/Form/Checkbox.vue';
 import GuestLayout from '@/Layouts/DefaultLayout.vue';
-import InputError from '@/Components/forms/InputError.vue';
-import InputLabel from '@/Components/forms/InputLabel.vue';
-import TextInput from '@/Components/forms/TextInput.vue';
+import InputError from '@/Components/Form/InputError.vue';
+import InputLabel from '@/Components/Form/InputLabel.vue';
+import TextInput from '@/Components/Form/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-import Password from '@/Components/forms/Password.vue';
+import Password from '@/Components/Form/Password.vue';
 
 defineOptions({ layout: GuestLayout });
 

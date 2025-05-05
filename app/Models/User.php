@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'displayName',
     ];
 
     /**
@@ -36,7 +38,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $visible= ['username','profilePic'];
+    protected $visible= ['username','profilePic','displayName'];
 
     /**
      * Get the attributes that should be cast.
@@ -58,6 +60,14 @@ class User extends Authenticatable
 
     public function isAdmin(): bool{
         return false;
+    }
+
+    public function followers(): BelongsToMany{
+        return $this->belongsToMany(User::class,'followers','following_id','follower_id');
+    }
+
+    public function followings(): BelongsToMany{
+        return $this->belongsToMany(User::class,'followers','follower_id','following_id');
     }
 
 

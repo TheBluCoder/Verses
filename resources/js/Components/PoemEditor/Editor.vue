@@ -10,9 +10,9 @@ const props = defineProps({
         type: Number,
         required: true,
     },
-    modelValue: {
-        type: String,
-        default: '',
+    initContent: {
+        type: Object,
+        required: false,
     },
 });
 
@@ -30,7 +30,7 @@ const editor = useEditor({
         //     return true;
         // },
     },
-    content: props.modelValue,
+    content: props.initContent.content,
     extensions: [
         StarterKit.configure({
             paragraph: {

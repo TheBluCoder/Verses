@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 class CommentController
 {
     //
-    public function store(StoreCommentRequest $request): void
+    public function store(StoreCommentRequest $request): \Illuminate\Http\RedirectResponse
     {
         $validated = $request->validated();
         $model = [
@@ -22,6 +22,9 @@ class CommentController
         $validated['commentableType'] ==='post' ? $model['Commentable_type'] = Post::class : $model['Commentable_type'] = Comment::class;
 
         Comment::create($model);
+
+        return redirect()->back();
+
     }
 
 }

@@ -22,13 +22,12 @@ class UserController
     public function store(CreateAccountRequest $request): Application|Redirector|RedirectResponse
     {
         $validated = $request->validated();
-
         $newUser = User::create(Arr::except($validated, 'favorite'));
-
         return redirect('/login');
     }
 
     public function show(User $user): \Inertia\Response{
-        return Inertia::render('Profile/Show', ['user' => $user]);
+        $posts = $user->posts()->get();
+        return Inertia::render('Profile/Show', ['user' => $user, 'posts'=> $posts ]);
     }
 }

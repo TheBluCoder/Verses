@@ -17,8 +17,8 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/posts/create', 'create')->middleware(['auth'])->name('posts.create');
     Route::post('/posts', 'store')->middleware(['auth'])->name('posts.store');
     Route::get('/posts/{post}', 'show')->middleware(['auth']);
-    Route::get('/posts/{post}/edit', 'edit')->middleware(['auth'])->name('posts.edit');
-    Route::patch('/posts/{post}', 'update')->middleware(['auth'])->name('posts.update');
+    Route::get('/posts/{post}/edit', 'edit')->middleware(['auth','can:delete,post'])->name('posts.edit');
+    Route::patch('/posts/{post}', 'update')->middleware(['auth','can:update,post'])->name('posts.update');
     Route::delete('/posts/{post}', 'destroy')->middleware(['auth','can:delete,post'])->name('posts.destroy');
 });
 
@@ -27,7 +27,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/{user:username}/profile',  'show')->name('user.show')->middleware(['auth']);
 });
 
-    //------ Liking Posts & Comments ---------
+    //------ Liking Posts & Comment ---------
 Route::controller(LikesController::class)->group(function () {
     Route::post('/posts/{post}/like', 'store' )->middleware(['auth'])->name('post.like');
     Route::delete('/posts/{post}/like', 'destroy' )->middleware(['auth'])->name('post.unlike');

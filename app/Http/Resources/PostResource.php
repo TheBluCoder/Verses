@@ -29,7 +29,6 @@ class PostResource extends JsonResource
             'comments' => $this->whenLoaded('comments', fn () => CommentResource::collection($this->comments)->resolve()),
         ];
 
-//        dd($this->toArray($request));
     }
 
 }

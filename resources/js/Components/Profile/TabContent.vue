@@ -1,24 +1,33 @@
 <!-- TabContent.vue -->
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, inject } from 'vue';
+import Drafts from '@/Components/Draft/Drafts.vue';
+import Posts from '@/Components/Post/Posts.vue';
+import BookMarks from '@/Components/BookMark/BookMarks.vue';
 
 const props = defineProps({
     activeTab: String, // Current active tab
 });
+
+const posts = inject('posts');
+const getComponents = () => {
+    switch (props.activeTab.toLowerCase()) {
+        case 'posts':
+            return { component: Posts, props: { posts: posts } };
+        case 'bookmarks':
+            return { component: BookMarks, props: {} };
+        case 'drafts':
+            return { component: Drafts, props: {} };
+    }
+};
 </script>
 
 <template>
-    <div class="py-4">
-        <div v-if="activeTab === 'drafts'" class="space-y-4">
-            <p class="text-gray-600">Your draft poems will appear here</p>
-        </div>
-        <div v-else-if="activeTab === 'bookmarks'" class="space-y-4">
-            <p class="px-2 text-gray-600">
-                Your bookmarked poems will appear here
-            </p>
-        </div>
-        <div v-else class="space-y-4">
-            <p class="text-gray-600">Your posts will appear here</p>
-        </div>
+    <div class="p-4">
+        <component
+            :is="getComponents().component"
+            v-bind="getComponents().props"
+            class="px-3"
+        />
     </div>
 </template>

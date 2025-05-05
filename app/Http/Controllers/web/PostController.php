@@ -75,5 +75,17 @@ class PostController
         return redirect()->back();
     }
 
+    public function edit(Post $post){
+//        $postContent = ['title'=>$post->title, 'content'=>$post->content,];
+        return Inertia::render('Post/Edit', [
+            'post' =>  $post,
+        ]);
+    }
 
+    public function update(StorePostRequest $request, Post $post){
+        $validated = $request->validated();
+        $post->update($validated);
+
+        return redirect()->route('home');
+    }
 }

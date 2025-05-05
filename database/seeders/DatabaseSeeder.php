@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         User::factory(30)->create();
         $this->call(PostSeeder::class);
         $this->call(CommentSeeder::class);
-        Likes::factory(10)->create();
+        $this->call(LikeSeeder::class);
+        $this->call(FollowersSeeder::class);
 
 
 

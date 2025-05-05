@@ -1,7 +1,7 @@
 <script setup>
 import { ClipboardDocumentListIcon } from '@heroicons/vue/24/outline/index.js';
 import { ref } from 'vue';
-import FlashModal from '../modals/FlashModal.vue';
+import FlashModal from '@/Components/Modal/FlashModal.vue';
 
 const props = defineProps({
     url: { type: String, required: true },

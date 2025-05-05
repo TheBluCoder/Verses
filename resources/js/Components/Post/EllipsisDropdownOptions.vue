@@ -2,6 +2,7 @@
 import {
     Ban,
     Bookmark,
+    Edit,
     DeleteIcon,
     EllipsisIcon,
     UserPlus2,
@@ -23,6 +24,16 @@ const props = defineProps({
 let show = ref(false);
 
 const ellipsisOptions = [
+    {
+        option: 'Edit',
+        icon: Edit,
+        id: 1,
+        href: `/posts/${props.postId}/edit`,
+        method: 'get',
+        class: {
+            hidden: usePage().props.auth.user.username !== props.postAuthor,
+        },
+    },
     {
         option: 'Bookmark',
         icon: Bookmark,
@@ -47,7 +58,7 @@ const ellipsisOptions = [
     {
         option: 'Delete',
         icon: DeleteIcon,
-        id: 4,
+        id: 5,
         href: `/posts/${props.postId}`,
         method: 'delete',
         class: {

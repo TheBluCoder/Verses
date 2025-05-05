@@ -43,7 +43,7 @@ const guest = inject('guest');
         >
             <ChatBubbleLeftIcon class="h-5 w-5 text-red-500" />
             <span class="text-sm">{{
-                props.post.commentCount ?? props.post.comments.length
+                props.post.commentCount ?? props.post.comments?.length
             }}</span>
         </Link>
 

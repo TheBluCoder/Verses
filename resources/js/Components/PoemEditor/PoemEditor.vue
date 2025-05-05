@@ -2,41 +2,33 @@
 import { ref } from 'vue';
 import Editor from './Editor.vue';
 import CharacterCountComponent from './CharacterCount.vue';
-import PrimaryButton from '@/Components/forms/PrimaryButton.vue';
-import ConfirmDialog from '@/Components/modals/ConfirmDialog.vue';
+import PrimaryButton from '@/Components/Form/PrimaryButton.vue';
+import ConfirmDialog from '@/Components/Modal/ConfirmDialog.vue';
 import { useForm, usePage } from '@inertiajs/vue3';
 import Toolbar from '@/Components/PoemEditor/Toolbar.vue';
-import { useToastComposable } from '@/Composables/useToast.js';
+// import { useToastComposable } from '@/Composables/useToast.js';
 
+const props = defineProps({
+    initialContent: {
+        type: Object,
+        required: false,
+        default: () => ({
+            title: '',
+            content: '',
+        }),
+    },
+});
+const emit = defineEmits(['submitForm']);
 let show = ref(false);
-let errorMsg = 'Post is empty!';
+
 const characterLimit = 4000;
 let editor = ref(null);
 
-const { getToast, errorConfig } = useToastComposable();
 const form = useForm({
-    title: '',
+    title: props.initialContent.title,
     content: '',
     published: false,
 });
-
-const submit = () => {
-    if (editor.value.getText().length > 0) {
-        form.title = form.title || 'untitled';
-        form.content = editor.value.getHTML();
-        form.published = true;
-
-        form.post('/posts', {
-            onSuccess: () => {
-                console.log('success');
-            },
-            onError: async () => {
-                const toast = await getToast();
-                toast(errorMsg, errorConfig);
-            },
-        });
-    }
-};
 
 let intendedUrl = usePage().url;
 </script>
@@ -51,7 +43,9 @@ let intendedUrl = usePage().url;
             <Toolbar v-if="editor" :editor="editor"></Toolbar>
 
             <div class="items-center md:flex">
-                <primary-button @click="submit">Publish</primary-button>
+                <primary-button @click="$emit('submitForm', [form, editor])"
+                    >Publish</primary-button
+                >
                 <primary-button
                     @click="
                         show = true;
@@ -72,6 +66,7 @@ let intendedUrl = usePage().url;
         <Editor
             :character-limit="characterLimit"
             @update:editor="editor = $event"
+            :init-content="initialContent"
         />
     </div>
     <div class="m-auto w-full">

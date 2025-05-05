@@ -1,5 +1,5 @@
 <script setup>
-import ConfirmDialog from '@/Components/modals/ConfirmDialog.vue';
+import ConfirmDialog from '@/Components/Modal/ConfirmDialog.vue';
 import { useConfirmDialog } from '@/Composables/useConfirmDialog.js';
 const { intended, displayConfirmDialog, showConfirmDialog } =
     useConfirmDialog();

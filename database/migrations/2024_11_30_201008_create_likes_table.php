@@ -14,9 +14,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('likes', function (Blueprint $table) {
-            $table->foreignIdFor(Post::class)->constrained()->cascadeOnUpdate();
             $table->foreignIdFor(User::class )->constrained()->cascadeOnUpdate();
-            $table->primary(['post_id', 'user_id']);
+            // Add polymorphic columns
+            $table->morphs('likeable');
+            // Add new primary key
+            $table->primary(['likeable_id', 'likeable_type', 'user_id']);
+
         });
     }
 

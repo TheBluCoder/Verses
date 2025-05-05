@@ -1,7 +1,7 @@
 <script setup>
 import { getBottomBarNavItems } from '@/Constants/Navigation.js';
 import { useConfirmDialog } from '@/Composables/useConfirmDialog.js';
-import ConfirmDialog from '@/Components/modals/ConfirmDialog.vue';
+import ConfirmDialog from '@/Components/Modal/ConfirmDialog.vue';
 
 const { intended, displayConfirmDialog, showConfirmDialog } =
     useConfirmDialog();

@@ -1,8 +1,8 @@
 <script setup>
-import TextInput from '@/Components/forms/TextInput.vue';
+import TextInput from '@/Components/Form/TextInput.vue';
 import { ref, computed } from 'vue';
-import hidePasswordSvg from '@/Components/forms/HidePasswordSvg.vue';
-import showPasswordSvg from '@/Components/forms/ShowPasswordSvg.vue';
+import hidePasswordSvg from '@/Components/Form/HidePasswordSvg.vue';
+import showPasswordSvg from '@/Components/Form/ShowPasswordSvg.vue';
 
 let props = defineProps({
     disabled: { type: Boolean, required: false },
