@@ -1,12 +1,8 @@
 # Verses - Collaborative Poetry Platform
 
-<p align="center">
-  <strong style="font-size:2em; font-family:serif; color:#4F46E5;">"Verses"</strong>
-  <span style="color:#64748B; font-size:1em; font-weight:300;">| where words take flight</span>
-</p>
-
-<p align="center">
-  <em>(Logo as implemented in <code>resources/js/Components/Header/BrandLogo.vue</code>)</em>
+<p align="center" style="margin-top: 30px; margin-bottom: 30px;">
+  <span style="font-size:3em; font-family:serif; color:#4F46E5; font-weight:bold;">&quot;Verses&quot;</span>
+  <span style="font-size:1.5em; color:#64748B; font-weight:400; margin-left: 10px; vertical-align: middle;">| where words take flight</span>
 </p>
 
 <p align="center">
