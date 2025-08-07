@@ -19,32 +19,32 @@ Here's a glimpse of the current features and user interface:
 
 **Creating a New Poem:**
 
-<img src="https://drive.google.com/file/d/1PsudJUlBUu4RRyMOLeHp4O9dCwFoKZoF/view?usp=drive_link" alt="New Poem Creation" width="800">
+<img src="https://res.cloudinary.com/dao2elffs/image/upload/v1754593713/create_acct_i2mst8.png" width="800">
 <p><em>Users can start a new poem with a simple, clean editor interface.</em></p>
 
 **User Profile:**
 
-<img src="https://drive.google.com/file/d/1wxBgG3j35urM0HZSmz_xTvAylDUTN-hT/view?usp=drive_link" alt="User Profile" width="800">
+<img src="https://res.cloudinary.com/dao2elffs/image/upload/v1754593714/user_profile_page_dkwlqh.png" alt="User Profile" width="800">
 <p><em>Each user has a profile page showcasing their pen name, bio, and published poems.</em></p>
 
 **Browse Recent Poems:**
 
-<img src="https://drive.google.com/file/d/1d_93NFA4hniTg-txsyNSynwaSqHOd7Fn/view?usp=drive_link" alt="Recent Poems Feed" width="800">
+<img src="https://res.cloudinary.com/dao2elffs/image/upload/v1754593714/signed_in_user_sw34h1.png" alt="Recent Poems Feed" width="800">
 <p><em>The homepage displays a feed of recent poems from the community.</em></p>
 
 **Sign In:**
 
-<img src="https://drive.google.com/file/d/1nMNHqUQKQgSdCOxkYc_6j-nKqcaU4e2l/view?usp=drive_link" alt="Sign In Page" width="800">
+<img src="https://res.cloudinary.com/dao2elffs/image/upload/v1754593713/authentication_szqf5s.png" alt="Sign In Page" width="800">
 <p><em>Users can securely sign in to their accounts.</em></p>
 
 **Join Verses (Registration):**
 
-<img src="https://drive.google.com/file/d/1qXuPCqymtn2pZg1CtLU0pvD5vVw0yhMD/view?usp=drive_link" alt="Join Verses Page" width="800">
+<img src="https://res.cloudinary.com/dao2elffs/image/upload/v1754593713/create_acct_i2mst8.png" alt="Join Verses Page" width="800">
 <p><em>New users can join the platform by providing a pen name, email, and password.</em></p>
 
 **Viewing a Specific Poem:**
 
-<img src="https://drive.google.com/file/d/1zfnbM_vWZeBaJsj3N3LeSi3oFpvjfJC-/view?usp=drive_link" alt="Viewing a Poem" width="800">
+<img src="https://res.cloudinary.com/dao2elffs/image/upload/v1754593713/comment_section_gyaffo.png" alt="Viewing a Poem" width="800">
 <p><em>Users can view individual poems, like "CROSSROAD," within a clean reading experience as well as see the comment section.</em></p>
 
 ### Key Features
