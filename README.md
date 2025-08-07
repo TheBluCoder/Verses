@@ -1,12 +1,8 @@
 # Verses - Collaborative Poetry Platform
 
 <p align="center" style="margin-top: 30px; margin-bottom: 30px;">
-  <span style="font-size:3em; font-family:serif; color:#4F46E5; font-weight:bold;">&quot;Verses&quot;</span>
+  <span style="font-size:3em; font-family:serif; color:#4F46E5; font-weight:bold;">"Verses"</span>
   <span style="font-size:1.5em; color:#64748B; font-weight:400; margin-left: 10px; vertical-align: middle;">| where words take flight</span>
-</p>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
 </p>
 
 <p align="center">
@@ -15,15 +11,50 @@
 
 ## About Verses
 
-Verses is an innovative social poetry platform that enables free creative collaboration through real-time commenting and live writing features. Our mission is to eliminate paywalls and create an inclusive space for poets and writers to express themselves freely.
+Verses is an innovative social poetry platform that enables free creative collaboration and expression. Our mission is to provide an inclusive space for poets and writers to share their work, connect with others, and discover new voices without barriers. The platform features a clean, intuitive interface designed to put the focus on the art of poetry.
+
+### Current Functionality Showcase
+
+Here's a glimpse of the current features and user interface:
+
+**Creating a New Poem:**
+
+<img src="https://drive.google.com/file/d/1PsudJUlBUu4RRyMOLeHp4O9dCwFoKZoF/view?usp=drive_link" alt="New Poem Creation" width="800">
+<p><em>Users can start a new poem with a simple, clean editor interface.</em></p>
+
+**User Profile:**
+
+<img src="https://drive.google.com/file/d/1wxBgG3j35urM0HZSmz_xTvAylDUTN-hT/view?usp=drive_link" alt="User Profile" width="800">
+<p><em>Each user has a profile page showcasing their pen name, bio, and published poems.</em></p>
+
+**Browse Recent Poems:**
+
+<img src="https://drive.google.com/file/d/1d_93NFA4hniTg-txsyNSynwaSqHOd7Fn/view?usp=drive_link" alt="Recent Poems Feed" width="800">
+<p><em>The homepage displays a feed of recent poems from the community.</em></p>
+
+**Sign In:**
+
+<img src="https://drive.google.com/file/d/1nMNHqUQKQgSdCOxkYc_6j-nKqcaU4e2l/view?usp=drive_link" alt="Sign In Page" width="800">
+<p><em>Users can securely sign in to their accounts.</em></p>
+
+**Join Verses (Registration):**
+
+<img src="https://drive.google.com/file/d/1qXuPCqymtn2pZg1CtLU0pvD5vVw0yhMD/view?usp=drive_link" alt="Join Verses Page" width="800">
+<p><em>New users can join the platform by providing a pen name, email, and password.</em></p>
+
+**Viewing a Specific Poem:**
+
+<img src="https://drive.google.com/file/d/1zfnbM_vWZeBaJsj3N3LeSi3oFpvjfJC-/view?usp=drive_link" alt="Viewing a Poem" width="800">
+<p><em>Users can view individual poems, like "CROSSROAD," within a clean reading experience as well as see the comment section.</em></p>
 
 ### Key Features
 
-- Real-time collaborative writing
-- Live commenting and feedback system
-- Community-driven content discovery
-- Modern, intuitive interface
-- Free and accessible to all creators
+- Personalized User Profiles
+- Content Discovery (Recent and Top Poems)
+- Poem Creation and Editing
+- Social Interaction (Likes, comments)
+- Secure User Authentication
+- Free and Accessible
 
 ## Tech Stack
 
@@ -31,6 +62,7 @@ Verses is an innovative social poetry platform that enables free creative collab
 - **Database**: PostgreSQL
 - **Frontend**: Vue.js
 - **Rich Text Editor**: Tiptap Editor
+- **UI/UX**: Clean, minimalist design with a focus on readability.
 - **Hosting**: Laravel Cloud
 
 ## Getting Started
@@ -47,7 +79,7 @@ Verses is an innovative social poetry platform that enables free creative collab
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/verses.git
+git clone [https://github.com/yourusername/verses.git](https://github.com/yourusername/verses.git)
 cd verses
 ```
 
@@ -66,14 +98,14 @@ npm install
 cp .env.example .env
 ```
 
-5. Configure your database settings in `.env`
+5. Configure your database settings in `.env` and ensure the database is running.
 
-6. Run migrations
+6. Run migrations to set up your database schema.
 ```bash
 php artisan migrate
 ```
 
-7. Start the development server
+7. Start the development server.
 ```bash
 php artisan serve
 ```
