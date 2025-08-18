@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, ref } from "vue";
+import { inject, ref } from "vue";
 import SocialShare from '@/Components/Post/SocialShare.vue';
 import { ChatBubbleLeftIcon } from '@heroicons/vue/24/outline';
 import { directive as clickAway } from 'vue3-click-away';
@@ -38,7 +38,7 @@ const guest = inject('guest');
         <!-- Comment Button -->
         <Link
             v-show="!guest"
-            :href="`/posts/${post.id}`"
+            :href="`${route('posts.show', props.post.id)}#comment-section`"
             class="flex items-center space-x-1 text-gray-600 transition-colors duration-500 hover:text-red-600"
         >
             <ChatBubbleLeftIcon class="h-5 w-5 text-red-500" />

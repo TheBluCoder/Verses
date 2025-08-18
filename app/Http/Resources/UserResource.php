@@ -18,6 +18,6 @@ class UserResource extends JsonResource
             'username'=> $this->username,
             'profilePic'=> $this->profilePic,
             'joinedDate'=>$this->created_at->format('F Y'),
-        ]
+        ];
     }
 }

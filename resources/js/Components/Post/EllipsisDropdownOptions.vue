@@ -76,19 +76,18 @@ const ellipsisOptions = [
     >
         <TransitionGroup
             :class="{
-                'absolute right-0 z-50 min-w-[100px] divide-y-2 rounded-md border-2 bg-white shadow-xl':
+                'absolute right-0 z-50 min-w-[150px] divide-y-2 rounded-md border-2 bg-white shadow-xl':
                     show,
             }"
             tag="ul"
             enter-from-class="opacity-20 scale-50 "
             enter-active-class="opacity-100 scale-1.5 transition-all duration-300"
-            leave-from-class="opacity-100 scale-100"
-            leave-active-class="transition-all duration-300 ease-out absolute"
-            leave-to-class="opacity-0 scale-50"
+            leave-active-class="opacity-0 fixed"
+            leave-to-class="opacity-0 fixed "
         >
             <li
                 v-show="!show"
-                class="p-1 text-gray-500 hover:cursor-pointer hover:rounded-full hover:border"
+                class="p-1 px-4 text-gray-700 hover:cursor-pointer hover:rounded-full hover:border"
                 @click="show = !show"
                 :key="1"
             >

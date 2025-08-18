@@ -16,7 +16,7 @@ Route::controller(PostController::class)->group(function () {
     //----Displaying & Making Posts --------
     Route::get('/posts/create', 'create')->middleware(['auth'])->name('posts.create');
     Route::post('/posts', 'store')->middleware(['auth'])->name('posts.store');
-    Route::get('/posts/{post}', 'show')->middleware(['auth']);
+    Route::get('/posts/{post}', 'show')->middleware(['auth'])->name('posts.show');
     Route::get('/posts/{post}/edit', 'edit')->middleware(['auth','can:delete,post'])->name('posts.edit');
     Route::patch('/posts/{post}', 'update')->middleware(['auth','can:update,post'])->name('posts.update');
     Route::delete('/posts/{post}', 'destroy')->middleware(['auth','can:delete,post'])->name('posts.destroy');

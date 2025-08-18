@@ -1,6 +1,7 @@
 import Toast from 'vue-toastification';
 import '../css/app.css';
 import './bootstrap';
+// import { ZiggyVue} from 'ziggy-js';
 
 import { createInertiaApp, Head, Link, usePage } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
