@@ -1,5 +1,4 @@
 <script setup>
-import { usePage } from '@inertiajs/vue3';
 import { provide } from 'vue';
 import PostActions from '@/Components/Post/PostActions.vue';
 import dayjs from 'dayjs';
@@ -23,7 +22,7 @@ const props = defineProps({
     },
 });
 
-const showFull = usePage().component.toLowerCase() === 'post/show';
+const showFull = route().current('posts.show');
 provide('post', props.post);
 </script>
 
@@ -45,7 +44,7 @@ provide('post', props.post);
                     v-html="post.content"
                 ></pre>
 
-                <div v-show="usePage().component.toLowerCase() !== 'post/show'">
+                <div v-show="!showFull">
                     <Link
                         :href="`/posts/${post.id}`"
                         class="mt-4 inline-block font-medium text-red-500"

@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Verses",
+    "description": "A full-stack social poetry platform built with Laravel 11, Vue 3, and Inertia.js, focused on poem publishing, rich-text composition, profile-driven discovery, and community interactions like likes, comments, follows, and bookmarks.",
+    "what": "Verses is a collaborative poetry platform that treats creative writing like a social product instead of a static publishing tool. The application uses a Laravel 11 backend with Inertia.js to serve a Vue 3 frontend, letting users register, write poems in a Tiptap-based editor, save drafts, publish posts, browse feeds, like and comment on poems, manage bookmarks, and navigate profile tabs for posts, drafts, and saved work. The codebase also uses resource transformers, policy-based authorization, model scopes, and cursor pagination to keep the UX responsive while keeping server-side access rules centralized.",
+    "why": "I built Verses after Poetizer, a poetry platform I was actively using, suddenly moved behind a subscription model. That shift made the problem personal: I wanted a writing-focused product that stayed accessible while also showing more than CRUD screens. The project lets me demonstrate full-stack product design, rich-text editing, authorization rules, reusable frontend composition, and how social interactions can be modeled cleanly in a Laravel application.",
+    "impact": "Verses works as both a response to a real product gap and a portfolio-grade engineering artifact. It shows how I structure a Laravel and Vue codebase, turn user actions into reusable UI patterns, and model product features like drafts, bookmarks, follows, and profile permissions in a way that can grow beyond a tutorial-scale app.",
+    "image": "",
+    "video": "",
+    "demo": "",
+    "type": "website",
+    "tech_stack": [
+      {
+        "name": "Laravel 11",
+        "icon": "fa-brands fa-laravel"
+      },
+      {
+        "name": "PHP 8.2",
+        "icon": "fa-brands fa-php"
+      },
+      {
+        "name": "Vue 3",
+        "icon": "fa-brands fa-vuejs"
+      },
+      {
+        "name": "Inertia.js",
+        "icon": "fa-solid fa-arrows-left-right-to-line"
+      },
+      {
+        "name": "Vite",
+        "icon": "fa-solid fa-bolt"
+      },
+      {
+        "name": "Tailwind CSS",
+        "icon": "fa-brands fa-css3-alt"
+      },
+      {
+        "name": "Tiptap",
+        "icon": "fa-solid fa-pen-nib"
+      },
+      {
+        "name": "PostgreSQL",
+        "icon": "fa-solid fa-database"
+      }
+    ],
+    "deployment_stack": [
+      "Laravel",
+      "Vite",
+      "PostgreSQL"
+    ]
+  }
+]

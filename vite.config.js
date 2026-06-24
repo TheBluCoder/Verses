@@ -21,6 +21,7 @@ export default defineConfig({
         alias: {
             '@': '/resources/js',
             Components: '/resources/js/components',
+            // ziggy: '/vendor/tightenco/ziggy/dist/js/route.js',
         },
     },
 });

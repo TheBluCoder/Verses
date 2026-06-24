@@ -9,7 +9,7 @@ const handleTabChange = (tab) => {
     activeTab.value = tab;
     emit('activeTab', activeTab.value);
 };
-const props = defineProps({
+defineProps({
     draftsCount: Number,
     bookmarksCount: Number,
     postsCount: Number,

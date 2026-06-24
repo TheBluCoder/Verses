@@ -9,14 +9,14 @@ const props = defineProps({
         required: true,
     },
 });
-
+const emit = defineEmits(['add-comment']);
 const sortedComments = computed(() => {
     return [...props.comments].sort((a, b) => -(a.id - b.id));
 });
 </script>
 
 <template>
-    <div class="mt-6">
+    <div class="mt-6" id="comment-section">
         <!-- New Comment Form -->
         <div class="p-4">
             <CommentForm
