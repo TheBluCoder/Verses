@@ -10,43 +10,34 @@
     "demo": "",
     "type": "website",
     "tech_stack": [
-      {
-        "name": "Laravel 11",
-        "icon": "fa-brands fa-laravel"
-      },
-      {
-        "name": "PHP 8.2",
-        "icon": "fa-brands fa-php"
-      },
-      {
-        "name": "Vue 3",
-        "icon": "fa-brands fa-vuejs"
-      },
-      {
-        "name": "Inertia.js",
-        "icon": "fa-solid fa-arrows-left-right-to-line"
-      },
-      {
-        "name": "Vite",
-        "icon": "fa-solid fa-bolt"
-      },
-      {
-        "name": "Tailwind CSS",
-        "icon": "fa-brands fa-css3-alt"
-      },
-      {
-        "name": "Tiptap",
-        "icon": "fa-solid fa-pen-nib"
-      },
-      {
-        "name": "PostgreSQL",
-        "icon": "fa-solid fa-database"
-      }
-    ],
-    "deployment_stack": [
-      "Laravel",
-      "Vite",
-      "PostgreSQL"
-    ]
+  {
+    "name": "Laravel 11",
+    "icon": "devicon:laravel"
+  },
+  {
+    "name": "PHP 8.2",
+    "icon": "devicon:php"
+  },
+  {
+    "name": "Vue 3",
+    "icon": "devicon:vuejs"
+  },
+  {
+    "name": "Inertia.js",
+    "icon": "simple-icons:inertia"
+  },
+  {
+    "name": "Vite",
+    "icon": "devicon:vitejs"
+  },
+  {
+    "name": "Tailwind CSS",
+    "icon": "devicon:tailwindcss"
+  },
+  {
+    "name": "PostgreSQL",
+    "icon": "devicon:postgresql"
+  }
+]
   }
 ]
